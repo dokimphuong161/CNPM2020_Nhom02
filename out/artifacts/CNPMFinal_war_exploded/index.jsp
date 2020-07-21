@@ -61,6 +61,7 @@
                                                     nhập</a></div>
                                             </li>
                                             <li class="level2">
+                                                <%--Bước 1: Khách hàng chọn nút đăng ký--%>
                                                 <div class="register"><a href="<%=Utils.fullPath("dangky")%>"><i
                                                         class="fa fa-registered"></i> Đăng kí</a></div>
                                             </li>

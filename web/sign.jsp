@@ -1,3 +1,7 @@
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="utils.Utils" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
