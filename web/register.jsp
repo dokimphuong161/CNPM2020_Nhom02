@@ -132,7 +132,7 @@
 
 
                 <div class="container-loginadd">
-                    <a class="cancelbtn" href="sign.html">Đăng nhập</a>
+                    <a class="cancelbtn" href="<%=Utils.fullPath("dangnhap")%>">Đăng nhập</a>
                     <span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
 
                 </div>
