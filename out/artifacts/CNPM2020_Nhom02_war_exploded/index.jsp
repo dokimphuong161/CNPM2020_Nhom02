@@ -1,6 +1,12 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="utils.Utils" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="model.Cart" %>
+<%@ page import="model.Product" %>
+<%@ page import="connection.ConnectionDB" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -42,460 +48,197 @@
 <script src="js/option-selectors.js" type="text/javascript"></script>
 <script src="js/api.jquery.js?4" type="text/javascript"></script>
 <script src="js/owl.carousel.min.js" type="text/javascript"></script>
-<h1 class="hidden">Ant Mobile</h1>
+<h1 class="hidden">Mobile</h1>
 <section class="awe-section-1">
+
     <div class="container margin-top-15">
         <div class="row top-sliders">
             <div class="col-md-8">
+
                 <div id="sync1" class="owl-carousel owl-theme not-dqowl">
+                    <%
+                        ResultSet b = (ResultSet) request.getAttribute("b");
+                        while (b.next()){
+                    %>
                     <div class="item">
-                        <a href="#" class="clearfix" title="Ant Green">
+                        <a href="#" class="clearfix" title="<%=b.getString(4)%>">
                             <picture>
-                                <source media="(max-width: 767px)"
-                                        srcset="https://bizweb.dktcdn.net/thumb/large/100/348/133/themes/709285/assets/slider_1.jpg?1559638811340">
-                                <img data-src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-eac86.jpg"
-                                     src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-eac86.jpg"
-                                     alt="Ant Green" class="img-responsive center-block"/>
+                                <source media="(max-width: 767px)" srcset="https://bizweb.dktcdn.net/thumb/large/100/348/133/themes/709285/assets/slider_1.jpg?1559638811340">
+                                <img data-src="" src="<%=b.getString(3)%>" alt="" class="img-responsive center-block" />
                             </picture>
                         </a>
                     </div>
-                    <div class="item">
-                        <a href="#" class="clearfix" title="Ant Organic">
-                            <picture>
-                                <source media="(max-width: 767px)"
-                                        srcset="https://bizweb.dktcdn.net/thumb/large/100/348/133/themes/709285/assets/slider_2.jpg?1559638811340">
-                                <img data-src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-1ad54.jpg"
-                                     src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-1ad54.jpg"
-                                     alt="Ant Organic" class="img-responsive center-block"/>
-                            </picture>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="clearfix" title="Ant Organic">
-                            <picture>
-                                <source media="(max-width: 767px)"
-                                        srcset="https://bizweb.dktcdn.net/thumb/large/100/348/133/themes/709285/assets/slider_3.jpg?1559638811340">
-                                <img data-src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-41ed4.jpg"
-                                     src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-41ed4.jpg"
-                                     alt="Ant Organic" class="img-responsive center-block"/>
-                            </picture>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="clearfix" title="Ant Organic">
-                            <picture>
-                                <source media="(max-width: 767px)"
-                                        srcset="https://bizweb.dktcdn.net/thumb/large/100/348/133/themes/709285/assets/slider_4.jpg?1559638811340">
-                                <img data-src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-e2be0.jpg"
-                                     src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-e2be0.jpg"
-                                     alt="Ant Organic" class="img-responsive center-block"/>
-                            </picture>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="clearfix" title="Ant Organic">
-                            <picture>
-                                <source media="(max-width: 767px)"
-                                        srcset="https://bizweb.dktcdn.net/thumb/large/100/348/133/themes/709285/assets/slider_5.jpg?1559638811340">
-                                <img data-src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/Sliding-1600x600pamu_11340111111.png"
-                                     src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/Sliding-1600x600pamu_11340111111.png"
-                                     alt="Ant Organic" class="img-responsive center-block"/>
-                            </picture>
-                        </a>
-                    </div>
+                    <% } %>
                 </div>
+
                 <div id="sync2" class="owl-carousel owl-theme not-dqowl hidden-xs">
-                    <div class="item">Mua Macbook Không lo chất lượng</div>
-                    <div class="item">Phụ kiện Laptop Mua 1 được 2</div>
-                    <div class="item">Mua HP Envy 13 Giá rẻ, có trả góp</div>
-                    <div class="item">Apple sẽ ra mắt MacBook Pro 16</div>
-                    <div class="item">Đặt trước Laptop ASUS ROG Strix G G531GD-AL025T rẻ hơn 1 triệu</div>
+                    <%
+                        ResultSet b1 = (ResultSet) request.getAttribute("b1");
+                        while (b1.next()){
+                    %>
+                    <div class="item"><%=b1.getString(2)%></div>
+                    <% } %>
                 </div>
+
             </div>
             <div class="col-md-4 homenews hidden-sm hidden-xs">
                 <figure>
-                    <h2><a href="tintuc.html">Tin công nghệ</a></h2>
+                    <h2><a href="tin-tuc">Tin công nghệ</a></h2>
                 </figure>
                 <ul>
+
                     <li class="clearfix">
-                        <a href="hp.html" title="HP Envy 13 siêu mỏng nhẹ vừa giảm giá, máy sang còn ưu đãi nhiều"></a>
-                        <img width="100" height="70"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                             data-lazyload="https://cdn.tgdd.vn/Files/2019/11/12/1217976/hp-envy-13-ad125tu-design-3_800x450-300x200.jpg"
-                             alt="HP Envy 13 siêu mỏng nhẹ vừa giảm giá, máy sang còn ưu đãi nhiều"
-                             class="img-responsive center-block"/>
+                        <a href="/oppo-trinh-lang-dien-thoai-gap-nhung-se-khong-san-xuat-hang-loat" title="HP Envy 13 siêu mỏng nhẹ vừa giảm giá, máy sang còn ưu đãi nhiều"></a>
+                        <img width="100" height="70" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/Files/2019/11/12/1217976/hp-envy-13-ad125tu-design-3_800x450-300x200.jpg" alt="HP Envy 13 siêu mỏng nhẹ vừa giảm giá, máy sang còn ưu đãi nhiều" class="img-responsive center-block" />
                         <h3>HP Envy 13 siêu mỏng nhẹ vừa giảm giá, máy sang còn ưu đãi nhiều</h3>
                         <span>26/Tháng Hai/2019</span>
                     </li>
                     <li class="clearfix">
-                        <a href="tintuc.html"
-                           title="Với Qualcomm, 5G kh&#244;ng chỉ d&#224;nh cho điện thoại m&#224; c&#242;n cả PC"></a>
-                        <img width="100" height="70"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                             data-lazyload="https://bizweb.dktcdn.net/thumb/grande/100/348/133/articles/nen-800x450.jpg?v=1551189624743"
-                             alt="Với Qualcomm, 5G kh&#244;ng chỉ d&#224;nh cho điện thoại m&#224; c&#242;n cả PC"
-                             class="img-responsive center-block"/>
-                        <h3>Với Qualcomm, 5G không chỉ dành cho Laptop mà còn...</h3>
+                        <a href="/voi-qualcomm-5g-khong-chi-danh-cho-dien-thoai-ma-con-ca-pc" title="Với Qualcomm, 5G kh&#244;ng chỉ d&#224;nh cho điện thoại m&#224; c&#242;n cả PC"></a>
+                        <img width="100" height="70" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://bizweb.dktcdn.net/thumb/grande/100/348/133/articles/nen-800x450.jpg?v=1551189624743" alt="Với Qualcomm, 5G kh&#244;ng chỉ d&#224;nh cho điện thoại m&#224; c&#242;n cả PC" class="img-responsive center-block" />
+                        <h3>Với Qualcomm, 5G kh&#244;ng chỉ d&#224;nh cho điện thoại m&#224; c&...</h3>
                         <span>26/Tháng Hai/2019</span>
                     </li>
                     <li class="clearfix">
-                        <a href="macbook.html"
-                           title=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ"></a>
-                        <img width="100" height="70"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                             data-lazyload="https://cdn.tgdd.vn/Files/2019/11/13/1218277/1_800x450-300x200.jpg"
-                             alt=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ"
-                             class="img-responsive center-block"/>
+                        <a href="/galalaxy-s10-ra-mat-tai-viet-nam-gia-tot-hon-du-kien-chi-tu-16-trieu" title=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ"></a>
+                        <img width="100" height="70" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/Files/2019/11/13/1218277/1_800x450-300x200.jpg" alt=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ" class="img-responsive center-block" />
                         <h3> Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ</h3>
                         <span>26/Tháng Hai/2019</span>
                     </li>
+
                 </ul>
                 <div class="twobanner">
                     <a href="#" title="Ant Mobile">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                             data-lazyload="https://cdn.tgdd.vn/2019/11/banner/390-80-390x80.png" alt="Ant Mobile"
-                             class="img-responsive center-block"/>
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/2019/11/banner/390-80-390x80.png" alt="Ant Mobile" class="img-responsive center-block" />
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 <section class="awe-section-2">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="promo-title">
-                    <a class="promo-title-a" href="sanpham.html" title="Giá sốc cuối tuần">Giá sốc cuối tuần</a>
+                    <a class="promo-title-a" href="sanpham.jsp" title="Giá sốc cuối tuần">Giá sốc cuối tuần</a>
                     <div id="owl-promo" class="section-tour-owl2 owl-carousel not-dqowl">
+                        <%
+                            ResultSet b2 = (ResultSet) request.getAttribute("b2");
+                            while (b2.next()){
+                        %>
                         <div class="item">
+
                             <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Inspiron 5584-N5I5384W (15' FHD/i5-8265U/4GB/1TB HDD/GeForce MX130/Win10/1.95 kg)"></a>
+
+                                <a href="<%=Utils.fullPath("Chitietsanpham?id="+b2.getInt(1))%>" title="<%=b2.getString(5)%>"></a>
                                 <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19060263/fe0bacaca11de4c9cfd3602b82e457c9_dell%20inspiron%2015%205584_silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Inspiron 5584-N5I5384W (15' FHD/i5-8265U/4GB/1TB HDD/GeForce MX130/Win10/1.95 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
+                                    <img src="<%=b2.getString(2)%>"   class="img-responsive center-block" />
+                                    <label class="per">Giảm  5% </label>
                                 </div>
-                                <h3>Laptop Dell Inspiron 5584-N5I5384W (15" FHD/i5-8265U/4GB/1TB HDD/GeForce
-                                    MX130/Win10/1.95 kg)</h3>
+                                <h3><%=b2.getString(6)%></h3>
                                 <div class="price">
-                                    <strong>17.390.000đ
+                                    <strong><%=b2.getString(3)%>
 
                                     </strong>
-                                    <span>18.190.000đ</span>
+                                    <span><%=b2.getString(4)%></span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook 15 A512FA-EJ202T (15' FHD/i5-8265U/8GB/1TB HDD/UHD 620/Win10/1.7 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19070123/cbccf2a95bdeb20a365fec7da8b958f7_asus%20a512_transparent%20silver_fingerprint_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS VivoBook 15 A512FA-EJ202T (15' FHD/i5-8265U/8GB/1TB HDD/UHD 620/Win10/1.7 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS VivoBook 15 A512FA-EJ202T (15" FHD/i5-8265U/8GB/1TB HDD/UHD
-                                    620/Win10/1.7 kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        15.390.000đ
 
-                                    </strong>
-                                    <span>15.990.000đ</span>
-                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS ROG Strix G G531GD-AL025T (15' FHD/i5-9300H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/37/78/1573643771.1359262_9.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS ROG Strix G G531GD-AL025T (15' FHD/i5-9300H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS ROG Strix G G531GD-AL025T (15" FHD/i5-9300H/8GB/512GB SSD/GTX
-                                    1050/Win10/2.4 kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        20.580.000đ
 
-                                    </strong>
-                                    <span>22.990.000đ</span>
-                                </div>
-                            </div>
                         </div>
-                        <div class="item">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Vostro 3580-T3RMD1 (15' FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.1 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/17/55/1566460510.7986238_Dell_Vostro_15_3580_Black_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Vostro 3580-T3RMD1 (15' FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.1 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Dell Vostro 3580-T3RMD1 (15" FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.1
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        14.490.000đ</strong>
-                                    <span>15.290.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFJ2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/80/45/1565858614.3205655_Macbook_Air_13.3_2019_SpaceGray_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple MacBook Air 2019 MVFJ2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>
-                                    Laptop Apple MacBook Air 2019 MVFJ2 (13" QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        34.990.000đ
-                                    </strong>
-                                    <span>36.990.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook X407UF-BV056T (14' HD/i5-8250U/4GB/1TB HDD/MX130/Win10/1.6 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/37/61/1565832909.4995792_Asus_Vivobook_X407U_FingerPrint_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS VivoBook X407UF-BV056T (14' HD/i5-8250U/4GB/1TB HDD/MX130/Win10/1.6 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>
-                                    Laptop ASUS VivoBook X407UF-BV056T (14" HD/i5-8250U/4GB/1TB HDD/MX130/Win10/1.6
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        12.990.000đ
+                        <% } %>
 
-                                    </strong>
-                                    <span>13.390.000đ</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="section_product clearfix">
+                <div class="section-head clearfix">
+                    <div class="viewallcat hidden-xs" style="float: left">
+                        <%
+                            String sql = "SELECT id, name FROM producttype WHERE active=1 ";
+                            PreparedStatement s = ConnectionDB.getPreparedStatement(sql);
+                            ResultSet rs = s.executeQuery(sql);
+                            request.setAttribute("rs", rs);
+                            while (rs.next()) { %>
+                        <a href="<%=Utils.fullPath("ListProduct?type="+rs.getInt(1)) %>" title="<%= rs.getString(2) %>"><%= rs.getString(2) %></a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="awe-section-3">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="section_product clearfix">
                     <div class="section-head clearfix">
-                        <h2 class="title_blog">MacBook</h2>
+                        <h2 class="title_blog">IPHONE</h2>
                     </div>
                     <div class="product-blocks clearfix">
-                        <div class="item-border col-md-40 col-sm-4 col-xs-12 no-padding big-item-product">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFH2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"></a>
-                                <div class="relative">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/7/35/1565858455.89743_Macbook_Air_13.3_2019_Gray_1.jpg"
-                                         alt="Laptop Apple MacBook Air 2019 MVFH2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <div class="big-content">
-                                    <h3>Laptop Apple MacBook Air 2019 MVFH2 (13" QHD/Core i5/8GB/128GB SSD/UHD
-                                        617/macOS/1.3 kg)</h3>
-                                    <div class="price">
-                                        <strong>
-                                            28.590.000đ</strong>
-                                        <span>31.990.000đ</span>
-                                    </div>
-                                    <div class="promos hidden-sm">
-                                        <ul>
-                                            <li><label>CPU:</label>Intel Core i5 (1.6 GHz - 3.6 GHz/4MB/2 nhân, 4
-                                                luồng)
-                                            </li>
-                                            <li><label>Màn hình:</label>13.3" IPS (2560 x 1600), không cảm ứng</li>
-                                            <li><label>RAM:</label>1 x 8GB DDR3L 2133MHz</li>
-                                            <li><label>Đồ họa:</label>Intel UHD Graphics 617</li>
-                                            <li><label>Lưu trữ:</label>128GB SSD M.2 NVMe /</li>
-                                            <li><label>Hệ điều hành:</label>macOS</li>
-                                            <li><label>50 Wh Pin liền, Khối lượng:</label>1.3 kg</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%--						<div class="item-border col-md-40 col-sm-4 col-xs-12 no-padding big-item-product">--%>
+                        <%--							<div class="news-item-products">--%>
+                        <%--								<a href="/samsung-galaxy-s10-8-128gb" title="Laptop Apple MacBook Air 2019 MVFH2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"></a>--%>
+                        <%--								<div class="relative">--%>
+                        <%--									<img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/7/35/1565858455.89743_Macbook_Air_13.3_2019_Gray_1.jpg"  alt="Laptop Apple MacBook Air 2019 MVFH2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)" class="img-responsive center-block" />--%>
+                        <%--									<label class="per">Giảm  5% </label>--%>
+                        <%--								</div>--%>
+                        <%--								<div class="big-content">--%>
+                        <%--									<h3>Laptop Apple MacBook Air 2019 MVFH2 (13" QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)</h3>--%>
+                        <%--									<div class="price">--%>
+                        <%--										<strong>--%>
+                        <%--											28.590.000đ</strong>--%>
+                        <%--										<span>31.990.000đ</span>--%>
+                        <%--									</div>--%>
+                        <%--									<div class="promos hidden-sm">--%>
+                        <%--										<ul>--%>
+                        <%--											<li><label>CPU:</label>Intel Core i5 (1.6 GHz - 3.6 GHz/4MB/2 nhân, 4 luồng)</li>--%>
+                        <%--											<li><label>Màn hình:</label>13.3" IPS (2560 x 1600), không cảm ứng</li>--%>
+                        <%--											<li><label>RAM:</label>1 x 8GB DDR3L 2133MHz</li>--%>
+                        <%--											<li><label>Đồ họa:</label>Intel UHD Graphics 617</li>--%>
+                        <%--											<li><label>Lưu trữ:</label>128GB SSD M.2 NVMe /</li>--%>
+                        <%--											<li><label>Hệ điều hành:</label>macOS</li>--%>
+                        <%--											<li><label>50 Wh Pin liền, Khối lượng:</label>1.3 kg</li>--%>
+                        <%--										</ul>--%>
+                        <%--									</div>--%>
+                        <%--								</div>--%>
+                        <%--							</div>--%>
+                        <%--						</div>--%>
+                        <%
+                            ResultSet b3 = (ResultSet) request.getAttribute("b3");
+                            while (b3.next()){
+                        %>
                         <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
+
                             <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFL2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"></a>
+
+                                <a href="<%=Utils.fullPath("Chitietsanpham?id="+b3.getInt(1))%>" title="<%=b3.getString(5)%>"></a>
                                 <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/24/48/1565858658.6411748_Macbook_Air_13.3_2019_Silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple MacBook Air 2019 MVFL2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
+                                    <img src="<%=b3.getString(2)%>"  class="img-responsive center-block" />
+                                    <label class="per">Giảm  10% </label>
                                 </div>
-                                <h3>Laptop Apple MacBook Air 2019 MVFL2 (13" QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3
-                                    kg)</h3>
+                                <h3><%=b3.getString(6)%></h3>
                                 <div class="price">
-                                    <strong>34.990.000đ</strong>
-                                    <span>36.990.000đ</span>
+                                    <strong><%=b3.getString(3)%></strong>
+                                    <span><%=b3.getString(4)%></span>
                                 </div>
+
                             </div>
+
+
                         </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple Macbook Pro 2017 13.3' MPXR2 (13.3'/Core i5/8GB/Iris Plus 640/macOS/1.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/uploads/product/p_14474/2017/11/13/14474.png"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple Macbook Pro 2017 13.3' MPXR2 (13.3'/Core i5/8GB/Iris Plus 640/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Apple Macbook Pro 2017 13.3" MPXR2 (13.3"/Core i5/8GB/Iris Plus 640/macOS/1.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>33.300.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFN2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/m/a/macbook_air_2018_silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple MacBook Air 2019 MVFN2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Apple MacBook Air 2019 MVFN2 (13" QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>31.900.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFN2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/24/92/1565858590.9076781_Macbook_Air_13.3_2019_Gold_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple MacBook Air 2019 MVFN2 (13' QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Apple MacBook Air 2019 MVFN2 (13" QHD/Core i5/8GB/256GB SSD/UHD 617/macOS/1.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>34.990.000đ</strong>
-                                    <span>36.990.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFK2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/12/39/1565858515.0622213_Macbook_Air_13.3_2019_Silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple MacBook Air 2019 MVFK2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Apple MacBook Air 2019 MVFK2 (13" QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>28.590.000đ</strong>
-                                    <span>31.990.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple MacBook Air 2019 MVFM2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/6/71/1565858549.8730547_Macbook_Air_13.3_2019_Gold_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple MacBook Air 2019 MVFM2 (13' QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Apple MacBook Air 2019 MVFM2 (13" QHD/Core i5/8GB/128GB SSD/UHD 617/macOS/1.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>28.590.000đ</strong>
-                                    <span>31.990.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple Macbook Pro 2018 13.3' MR9U2 (13.3'/Core i5/8GB/HD/macOS/1.4 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/1/_/1_54_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple Macbook Pro 2018 13.3' MR9U2 (13.3'/Core i5/8GB/HD/macOS/1.4 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Apple Macbook Pro 2018 13.3" MR9U2 (13.3"/Core i5/8GB/HD/macOS/1.4 kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        44.390.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Apple Macbook Pro 2017 13.3' MPXV2 (13.3'/i5-7267U/8GB/Iris Plus 650/macOS/1.4 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog/product/m/a/may-tinh-xach-tay-laptop-macbook-13.3-mpxv2lla-1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Apple Macbook Pro 2017 13.3' MPXV2 (13.3'/i5-7267U/8GB/Iris Plus 650/macOS/1.4 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Apple Macbook Pro 2017 13.3" MPXV2 (13.3"/i5-7267U/8GB/Iris Plus
-                                    650/macOS/1.4 kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        45.000.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
-                    <a href="sanpham.html" title="Xem tất cả laptop" class="hidden-lg hidden-md mobile-viewmore">Xem tất
-                        cả Laptop</a>
+                    <a href="san-pham-moi" title="Xem tất cả Điện thoại" class="hidden-lg hidden-md mobile-viewmore">Xem tất cả Điện thoại</a>
                 </div>
             </div>
         </div>
@@ -507,198 +250,63 @@
             <div class="col-md-12">
                 <div class="section_product clearfix">
                     <div class="section-head clearfix">
-                        <h2 class="title_blog">Dell</h2>
+                        <h2 class="title_blog">SAMSUNG</h2>
                     </div>
                     <div class="product-blocks clearfix">
-                        <div class="item-border col-md-40 col-sm-4 col-xs-12 no-padding big-item-product">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Inspiron 7591-KJ2G41 (15' FHD/i7-9750H/8GB/256GB SSD/GTX 1050/Win10/1.8 kg)"></a>
-                                <div class="relative">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/78/99/1566625130.154246_Dell_Inspiron_15_7591_1.jpg"
-                                         alt="Laptop Dell Inspiron 7591-KJ2G41 (15' FHD/i7-9750H/8GB/256GB SSD/GTX 1050/Win10/1.8 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <div class="big-content">
-                                    <h3>Laptop Dell Inspiron 7591-KJ2G41 (15" FHD/i7-9750H/8GB/256GB SSD/GTX
-                                        1050/Win10/1.8 kg)</h3>
-                                    <div class="price">
-                                        <strong>29.390.000đ</strong>
-                                        <span>29.990.000đ </span>
-                                    </div>
-                                    <div class="promos hidden-sm">
-                                        <ul>
-                                            <li><label>CPU:</label>Intel Core i7-9750H (2.6 GHz - 4.5 GHz/12MB/6 nhân,
-                                                12 luồng)
-                                            </li>
-                                            <li><label>Màn hình:</label>15.6" (1920 x 1080), không cảm ứng</li>
-                                            <li><label>RAM:</label>8 GB</li>
-                                            <li><label>Bộ nhớ trong:</label>1 x 8GB DDR4 2666MHz (2 Khe cắm, tối đa
-                                                32GB)
-                                            </li>
-                                            <li><label>Đồ họa:</label>Intel UHD Graphics 630/ NVIDIA GeForce GTX 1050
-                                                3GB
-                                            </li>
-                                            <li><label>Hệ điều hành:</label> Windows 10 Home SL 64-bit</li>
-                                            <li><label>Pin:</label>3 cell 56 Wh Pin liền, Khối lượng: 1.8 kg</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%--						<div class="item-border col-md-40 col-sm-4 col-xs-12 no-padding big-item-product">--%>
+                        <%--							<div class="news-item-products">--%>
+                        <%--								<a href="/samsung-galaxy-s10-8-128gb" title="Laptop Dell Inspiron 7591-KJ2G41 (15' FHD/i7-9750H/8GB/256GB SSD/GTX 1050/Win10/1.8 kg)"></a>--%>
+                        <%--								<div class="relative">--%>
+                        <%--									<img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/78/99/1566625130.154246_Dell_Inspiron_15_7591_1.jpg" alt="Laptop Dell Inspiron 7591-KJ2G41 (15' FHD/i7-9750H/8GB/256GB SSD/GTX 1050/Win10/1.8 kg)" class="img-responsive center-block" />--%>
+                        <%--									<label class="per">Giảm  5% </label>--%>
+                        <%--								</div>--%>
+                        <%--								<div class="big-content">--%>
+                        <%--									<h3>Laptop Dell Inspiron 7591-KJ2G41 (15" FHD/i7-9750H/8GB/256GB SSD/GTX 1050/Win10/1.8 kg)</h3>--%>
+                        <%--									<div class="price">--%>
+                        <%--										<strong>29.390.000đ</strong>--%>
+                        <%--										<span>29.990.000đ </span>--%>
+                        <%--									</div>--%>
+                        <%--									<div class="promos hidden-sm">--%>
+                        <%--										<ul>--%>
+                        <%--											<li><label>CPU:</label>Intel Core i7-9750H (2.6 GHz - 4.5 GHz/12MB/6 nhân, 12 luồng)</li>--%>
+                        <%--											<li><label>Màn hình:</label>15.6" (1920 x 1080), không cảm ứng</li>--%>
+                        <%--											<li><label>RAM:</label>8 GB</li>--%>
+                        <%--											<li><label>Bộ nhớ trong:</label>1 x 8GB DDR4 2666MHz (2 Khe cắm, tối đa 32GB)</li>--%>
+                        <%--											<li><label>Đồ họa:</label>Intel UHD Graphics 630/ NVIDIA GeForce GTX 1050 3GB</li>--%>
+                        <%--											<li><label>Hệ điều hành:</label> Windows 10 Home SL 64-bit</li>--%>
+                        <%--											<li><label>Pin:</label>3 cell 56 Wh Pin liền, Khối lượng: 1.8 kg</li>--%>
+                        <%--										</ul>--%>
+                        <%--									</div>--%>
+                        <%--								</div>--%>
+                        <%--							</div>--%>
+                        <%--						</div>--%>
+                        <%
+                            ResultSet b4 = (ResultSet) request.getAttribute("b4");
+                            while (b4.next()){
+                        %>
                         <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Inspiron 3580-P75F106N80I (15' HD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/32/50/1566801687.4729602_Dell_Inspiron_15_3580_Black_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Inspiron 3580-P75F106N80I (15' HD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.3 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Dell Inspiron 3580-P75F106N80I (15" HD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        15.190.000đ</strong>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
                             <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Vostro 3580-T3RMD1 (15' FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.1 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/17/55/1566460510.7986238_Dell_Vostro_15_3580_Black_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Vostro 3580-T3RMD1 (15' FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/2.1 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Dell Vostro 3580-T3RMD1</h3>
-                                <div class="price">
-                                    <strong>10.490.000₫</strong>
-                                    <span>12.500.000₫</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Vostro 3580-P75F010V80I (15' FHD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/2.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/41/55/1565940152.5585444_Dell_Vostro_15_3580_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Vostro 3580-P75F010V80I (15' FHD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/2.3 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop Dell Vostro 3580-P75F010V80I (15" FHD/i5-8265U/4GB/1TB HDD/Radeon
-                                    520/Win10/2.3 kg)</h3>
-                                <div class="price">
-                                    <strong>16.190.000đ</strong>
-                                    <span>16.290.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Inspiron 3567-N3567U (15' FHD/i3-7020U/4GB/1TB HDD/HD 620/Ubuntu/2.3 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19070001/6aafb897dee6565fc328b27e12cc2bcd_dell%20inspiron%203567_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Inspiron 3567-N3567U (15' FHD/i3-7020U/4GB/1TB HDD/HD 620/Ubuntu/2.3 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Dell Inspiron 3567-N3567U (15" FHD/i3-7020U/4GB/1TB HDD/HD 620/Ubuntu/2.3
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        9.490.000đ
 
-                                    </strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="SLaptop Dell Vostro 3480-2K47M1 (14' HD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/1.8 kg)"></a>
+                                <a href="<%=Utils.fullPath("Chitietsanpham?id="+b4.getInt(1))%>" title="<%=b4.getString(5)%>"></a>
                                 <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19060237/15eaca1425b6e74201bcdb31a070cd1e_dell%20vostro%2014%203480_black_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Vostro 3480-2K47M1 (14'HD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/1.8 kg)"
-                                         class="img-responsive center-block"/>
+                                    <img src="<%=b4.getString(2)%>"  class="img-responsive center-block" />
+                                    <label class="per">Giảm  10% </label>
                                 </div>
-                                <h3>Laptop Dell Vostro 3480-2K47M1 (14" HD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/1.8
-                                    kg)</h3>
+                                <h3><%=b4.getString(6)%></h3>
                                 <div class="price">
-                                    <strong>15.190.000đ</strong>
+                                    <strong><%=b4.getString(3)%></strong>
+                                    <span><%=b4.getString(4)%></span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Inspiron 3480-NT4X01 (14' HD/i3-8145U/4GB/1TB HDD/UHD 620/Win10/1.7 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19060173/379da9be45d00d504fe5590d2d1b7e80_dell%20inspiron%2014%203480_silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Inspiron 3480-NT4X01 (14' HD/i3-8145U/4GB/1TB HDD/UHD 620/Win10/1.7 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Dell Inspiron 3480-NT4X01 (14" HD/i3-8145U/4GB/1TB HDD/UHD 620/Win10/1.7
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>11.690.000đ
 
-                                    </strong>
-                                </div>
                             </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Vostro 3480-2K47M1 (14' HD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/1.8 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19060174/a3d96ed6664a2f4cb4b10d11fa680f31_dell%20vostro%2014%203480_black_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Vostro 3480-2K47M1 (14' HD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/1.8 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Dell Vostro 3480-2K47M1 (14" HD/i5-8265U/4GB/1TB HDD/Radeon 520/Win10/1.8
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>
-                                        14.990.000đ
 
-                                    </strong>
-                                </div>
-                            </div>
+
                         </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop Dell Inspiron 5584-N5I5384W (15' FHD/i5-8265U/4GB/1TB HDD/GeForce MX130/Win10/1.95 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19060263/fe0bacaca11de4c9cfd3602b82e457c9_dell%20inspiron%2015%205584_silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop Dell Inspiron 5584-N5I5384W (15' FHD/i5-8265U/4GB/1TB HDD/GeForce MX130/Win10/1.95 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop Dell Inspiron 5584-N5I5384W (15" FHD/i5-8265U/4GB/1TB HDD/GeForce
-                                    MX130/Win10/1.95 kg)</h3>
-                                <div class="price">
-                                    <strong>18.190.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
+
                     </div>
-                    <a href="dell.html" title="Xem tất cả Laptop Dell" class="hidden-lg hidden-md mobile-viewmore">Xem
-                        tất cả Laptop Dell</a>
+                    <a href="san-pham-moi" title="Xem tất cả Tablet" class="hidden-lg hidden-md mobile-viewmore">Xem tất cả Tablet</a>
                 </div>
             </div>
         </div>
@@ -710,198 +318,62 @@
             <div class="col-md-12">
                 <div class="section_product clearfix">
                     <div class="section-head clearfix">
-                        <h2 class="title_blog">Asus</h2>
+                        <h2 class="title_blog">VSMART</h2>
                     </div>
                     <div class="product-blocks clearfix">
-                        <div class="item-border col-md-40 col-sm-4 col-xs-12 no-padding big-item-product">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS ROG Strix G G531GD-AL034T (15' FHD/i7-9750H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)"></a>
-                                <div class="relative">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/78/50/1565331324.4108346_Asus_ROG_Strix_G531GD-GT_1.jpg"
-                                         alt="Laptop ASUS ROG Strix G G531GD-AL034T (15' FHD/i7-9750H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <div class="big-content">
-                                    <h3>Laptop ASUS ROG Strix G G531GD-AL034T (15" FHD/i7-9750H/8GB/512GB SSD/GTX
-                                        1050/Win10/2.4 kg)</h3>
-                                    <div class="price">
-                                        <strong>25.490.000đ</strong>
-                                        <span>26.490.000đ</span>
-                                    </div>
-                                    <div class="promos hidden-sm">
-                                        <ul>
-                                            <li><label>CPU:</label>Intel Core i7-9750H ( 2.6 GHz - 4.5 GHz / 12MB / 6
-                                                nhân, 12 luồng )
-                                            </li>
-                                            <li><label>Màn hình:</label>15.6" IPS ( 1920 x 1080 ) , không cảm ứng</li>
-                                            <li><label>RAM:</label>1 x 8GB DDR4 2666MHz</li>
-                                            <li><label>Đồ họa:</label>Intel HD Graphics 630 / NVIDIA GeForce GTX 1050
-                                                4GB GDDR5
-                                            </li>
-                                            <li><label>GPU:</label>Mali-G76 MP12</li>
-                                            <li><label>Hệ điều hành:</label>Windows 10 Home 64-bit</li>
-                                            <li><label>Pin:</label> 3 cell 48 Wh Pin liền , khối lượng: 2.4 kg</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%--						<div class="item-border col-md-40 col-sm-4 col-xs-12 no-padding big-item-product">--%>
+                        <%--							<div class="news-item-products">--%>
+                        <%--								<a href="/samsung-galaxy-s10-8-128gb" title="Laptop ASUS ROG Strix G G531GD-AL034T (15' FHD/i7-9750H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)"></a>--%>
+                        <%--								<div class="relative">--%>
+                        <%--									<img src="https://img.vnshop.vn/height/350/media/catalog_v2/media/78/50/1565331324.4108346_Asus_ROG_Strix_G531GD-GT_1.jpg" alt="Laptop ASUS ROG Strix G G531GD-AL034T (15' FHD/i7-9750H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)" class="img-responsive center-block" />--%>
+                        <%--									<label class="per">Giảm  5% </label>--%>
+                        <%--								</div>--%>
+                        <%--								<div class="big-content">--%>
+                        <%--									<h3>Laptop ASUS ROG Strix G G531GD-AL034T (15" FHD/i7-9750H/8GB/512GB SSD/GTX 1050/Win10/2.4 kg)</h3>--%>
+                        <%--									<div class="price">--%>
+                        <%--										<strong>25.490.000đ</strong>--%>
+                        <%--										<span>26.490.000đ</span>--%>
+                        <%--									</div>--%>
+                        <%--									<div class="promos hidden-sm">--%>
+                        <%--										<ul>--%>
+                        <%--											<li><label>CPU:</label>Intel Core i7-9750H ( 2.6 GHz - 4.5 GHz / 12MB / 6 nhân, 12 luồng )</li>--%>
+                        <%--											<li><label>Màn hình:</label>15.6" IPS ( 1920 x 1080 ) , không cảm ứng</li>--%>
+                        <%--											<li><label>RAM:</label>1 x 8GB DDR4 2666MHz</li>--%>
+                        <%--											<li><label>Đồ họa:</label>Intel HD Graphics 630 / NVIDIA GeForce GTX 1050 4GB GDDR5</li>--%>
+                        <%--											<li><label>GPU:</label>Mali-G76 MP12</li>--%>
+                        <%--											<li><label>Hệ điều hành:</label>Windows 10 Home 64-bit</li>--%>
+                        <%--											<li><label>Pin:</label> 3 cell 48 Wh Pin liền , khối lượng: 2.4 kg</li>--%>
+                        <%--										</ul>--%>
+                        <%--									</div>--%>
+                        <%--								</div>--%>
+                        <%--							</div>--%>
+                        <%--						</div>--%>
+                        <%
+                            ResultSet b5 = (ResultSet) request.getAttribute("b5");
+                            while (b5.next()){
+                        %>
                         <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook 14 A412FA-EK377T (14' FHD/i3-8145U/4GB /256GB SSD/UHD 620/Win10/1.5 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19070191/c60cea4edb2681cc4f334baa1d880b99_asus%20vivobook%20a412_transparent%20silver_1.jpg"
-                                         alt="Laptop ASUS VivoBook 14 A412FA-EK377T (14' FHD/i3-8145U/4GB /256GB SSD/UHD 620/Win10/1.5 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS VivoBook 14 A412FA-EK377T (14" FHD/i3-8145U/4GB /256GB SSD/UHD
-                                    620/Win10/1.5 kg)</h3>
-                                <div class="price">
-                                    <strong>11.590.000đ</strong>
-                                    <span>12.590.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook S15 S530FA-BQ066T (15.6' FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/1.8 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img src="https://img.vnshop.vn/height/350/media/catalog/product/storage/laptop/19020336/57e275fb40d555b533ea923ad8c6f481_asus%20vivobook%20s15%20s530_icicle%20gold_1.jpg"
-                                         alt="Laptop ASUS VivoBook S15 S530FA-BQ066T (15.6' FHD/i5-8265U/4GB/1TB HDD/UHD 620/Win10/1.8 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS VivoBook S15 S530FA-BQ066T (15.6" FHD/i5-8265U/4GB/1TB HDD/UHD
-                                    620/Win10/1.8 kg)</h3>
-                                <div class="price">
-                                    <strong>17.190.000đ</strong>
-                                    <span>18.190.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook 14 A412FA-EK156T (14' FHD/i3-8145U/4GB/1TB HDD/UHD 620/Win10/1.5 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog_v2/media/54/43/1565252558.0175033_Asus_X412_Peacock_Blue_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS VivoBook 14 A412FA-EK156T (14' FHD/i3-8145U/4GB/1TB HDD/UHD 620/Win10/1.5 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS VivoBook 14 A412FA-EK156T (14" FHD/i3-8145U/4GB/1TB HDD/UHD
-                                    620/Win10/1.5 kg)</h3>
-                                <div class="price">
-                                    <strong>10.990.000đ</strong>
-                                    <span>11.990.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook X407MA-BV043T (14' HD/N4000/4GB/1TB HDD/UHD 600/Win10/1.5 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog_v2/media/78/16/1573643851.9318_10.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS VivoBook X407MA-BV043T (14' HD/N4000/4GB/1TB HDD/UHD 600/Win10/1.5 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS VivoBook X407MA-BV043T (14" HD/N4000/4GB/1TB HDD/UHD 600/Win10/1.5
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>5.590.000đ</strong>
-                                    <span>6.390.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS TUF Gaming FX505GD-BQ012T (15.6' FHD/i5-8300H/8GB/1TB HDD/GTX 1050/Win10/2.2 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog_v2/media/36/1/1566531958.1521301_Asus_TUF_Gaming_FX505GD-GE_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS TUF Gaming FX505GD-BQ012T (15.6' FHD/i5-8300H/8GB/1TB HDD/GTX 1050/Win10/2.2 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS TUF Gaming FX505GD-BQ012T (15.6" FHD/i5-8300H/8GB/1TB HDD/GTX
-                                    1050/Win10/2.2 kg)</h3>
-                                <div class="price">
-                                    <strong>21.290.000đ
 
-                                    </strong>
-                                    <span>21.490.000đ</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
                             <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS 15 X509FJ-EJ155T (15' FHD/i5-8265U/4GB/512GB SSD/MX230/Win10/1.7 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog_v2/media/3/52/1573643718.2354374_8.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS 15 X509FJ-EJ155T (15' FHD/i5-8265U/4GB/512GB SSD/MX230/Win10/1.7 kg)"
-                                         class="img-responsive center-block"/>
-                                    <label class="per">Giảm 5% </label>
-                                </div>
-                                <h3>Laptop ASUS 15 X509FJ-EJ155T (15" FHD/i5-8265U/4GB/512GB SSD/MX230/Win10/1.7
-                                    kg)</h3>
-                                <div class="price">
-                                    <strong>13.990.000đ
 
-                                    </strong>
-                                    <span>15.890.000đ</span>
+                                <a href="<%=Utils.fullPath("Chitietsanpham?id="+b5.getInt(1))%>" title="<%=b5.getString(5)%>"></a>
+                                <div class="relative fix-images">
+                                    <img src="<%=b5.getString(2)%>"  class="img-responsive center-block" />
+                                    <label class="per">Giảm  10% </label>
+                                </div>
+                                <h3><%=b5.getString(6)%></h3>
+                                <div class="price">
+                                    <strong><%=b5.getString(3)%></strong>
+                                    <span><%=b5.getString(4)%></span>
+                                </div>
 
-                                </div>
                             </div>
+
+
                         </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS ZenBook 13 UX333FA-A4011T (13.3' FHD/i5-8265U/8GB/256GB SSD/UHD 620/Win10/1.2 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog_v2/media/54/81/1566358636.5242183_Asus_Zenbook_UX333_RoyalBlue_NoNumpad_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS ZenBook 13 UX333FA-A4011T (13.3' FHD/i5-8265U/8GB/256GB SSD/UHD 620/Win10/1.2 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop ASUS ZenBook 13 UX333FA-A4011T (13.3" FHD/i5-8265U/8GB/256GB SSD/UHD
-                                    620/Win10/1.2 kg)</h3>
-                                <div class="price">
-                                    <strong>22.990.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-border col-md-15 col-sm-4 col-xs-6 no-padding">
-                            <div class="news-item-products">
-                                <a href="Macbockctsp.html"
-                                   title="Laptop ASUS VivoBook S15 S531FL-BQ190T (15' FHD/i5-8265U/8GB/512GB SSD/MX250/Win10/1.7 kg)"></a>
-                                <div class="relative fix-images">
-                                    <img data-src="https://img.vnshop.vn/height/350/media/catalog_v2/media/86/57/1569834318.9235687_Asus_Vivobook_S531_Transparent_Silver_1.jpg"
-                                         src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="
-                                         alt="Laptop ASUS VivoBook S15 S531FL-BQ190T (15' FHD/i5-8265U/8GB/512GB SSD/MX250/Win10/1.7 kg)"
-                                         class="img-responsive center-block"/>
-                                </div>
-                                <h3>Laptop ASUS VivoBook S15 S531FL-BQ190T (15" FHD/i5-8265U/8GB/512GB
-                                    SSD/MX250/Win10/1.7 kg)</h3>
-                                <div class="price">
-                                    <strong>20.790.000đ</strong>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
-                    <a href="asus.html" title="Xem tất cả Laptop Asus" class="hidden-lg hidden-md mobile-viewmore">Xem
-                        tất cả Laptop Asus</a>
+                    <a href="san-pham-moi" title="Xem tất cả Laptop" class="hidden-lg hidden-md mobile-viewmore">Xem tất cả Laptop</a>
                 </div>
             </div>
         </div>
@@ -913,57 +385,34 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section_blogs">
                     <h2>
-                        <a href="tintuc.html" title="Video sản phẩm">Video sản phẩm</a>
+                        <a href="/tin-tuc" title="Video sản phẩm">Video sản phẩm</a>
                     </h2>
                     <div class="clearfix">
                         <div class="col-md-3 col-sm-6 col-xs-12 news-items">
-                            <a href="https://www.youtube.com/watch?v=G_g1Ep8UXzk"
-                               title="Apple ra mắt MacBook Pro 16 inch: Bàn phím 'Magic Keyboard', 6 loa, chip 8 nhân, giá khởi điểm từ 55.7 triệu đồng"
-                               class="clearfix">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                                     data-lazyload="https://cdn.tgdd.vn/Files/2019/11/13/1218557/77_800x450-300x200.jpg"
-                                     alt="Apple ra mắt MacBook Pro 16 inch: Bàn phím 'Magic Keyboard', 6 loa, chip 8 nhân, giá khởi điểm từ 55.7 triệu đồng"
-                                     class="img-responsive center-block"/>
-                                <h3>Apple ra mắt MacBook Pro 16 inch: Bàn phím 'Magic Keyboard', 6 loa, chip 8 nhân, giá
-                                    khởi điểm từ 55.7 triệu đồng</h3>
+                            <a href="/oppo-trinh-lang-dien-thoai-gap-nhung-se-khong-san-xuat-hang-loat" title="Apple ra mắt MacBook Pro 16 inch: Bàn phím 'Magic Keyboard', 6 loa, chip 8 nhân, giá khởi điểm từ 55.7 triệu đồng" class="clearfix">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/Files/2019/11/13/1218557/77_800x450-300x200.jpg" alt="Apple ra mắt MacBook Pro 16 inch: Bàn phím 'Magic Keyboard', 6 loa, chip 8 nhân, giá khởi điểm từ 55.7 triệu đồng" class="img-responsive center-block" />
+                                <h3>Apple ra mắt MacBook Pro 16 inch: Bàn phím 'Magic Keyboard', 6 loa, chip 8 nhân, giá khởi điểm từ 55.7 triệu đồng</h3>
                                 <div class="date_added">Ngày đăng: 26/02/2019</div>
                             </a>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12 news-items">
-                            <a href="https://www.youtube.com/watch?v=7W8f4ZlKtsI"
-                               title=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ"
-                               class="clearfix">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                                     data-lazyload="https://cdn.tgdd.vn/Files/2019/11/13/1218277/macbook-1_1280x720-300x200.jpg"
-                                     alt=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ"
-                                     class="img-responsive center-block"/>
-                                <h3> Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất
-                                    ngờ</h3>
+                            <a href="/voi-qualcomm-5g-khong-chi-danh-cho-dien-thoai-ma-con-ca-pc" title=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ" class="clearfix">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/Files/2019/11/13/1218277/macbook-1_1280x720-300x200.jpg" alt=" Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ" class="img-responsive center-block" />
+                                <h3> Apple sẽ ra mắt MacBook Pro 16 inch vào ngày mai, giá bán có thể khiến bạn bất ngờ</h3>
                                 <div class="date_added">Ngày đăng: 26/02/2019</div>
                             </a>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12 news-items">
-                            <a href="https://www.youtube.com/watch?v=fy8Jq0NgxME"
-                               title="Tại sao người ta không còn ưa thích các mẫu laptop gaming cồng kềnh?"
-                               class="clearfix">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                                     data-lazyload="https://cdn.tgdd.vn/Files/2019/11/11/1217748/a%CC%89nhchu%CC%A3pma%CC%80nhi%CC%80nh92_1280x720-300x200.png"
-                                     alt="Tại sao người ta không còn ưa thích các mẫu laptop gaming cồng kềnh?"
-                                     class="img-responsive center-block"/>
+                            <a href="/galalaxy-s10-ra-mat-tai-viet-nam-gia-tot-hon-du-kien-chi-tu-16-trieu" title="Tại sao người ta không còn ưa thích các mẫu laptop gaming cồng kềnh?" class="clearfix">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/Files/2019/11/11/1217748/a%CC%89nhchu%CC%A3pma%CC%80nhi%CC%80nh92_1280x720-300x200.png" alt="Tại sao người ta không còn ưa thích các mẫu laptop gaming cồng kềnh?" class="img-responsive center-block" />
                                 <h3>Tại sao người ta không còn ưa thích các mẫu laptop gaming cồng kềnh?</h3>
                                 <div class="date_added">Ngày đăng: 26/02/2019</div>
                             </a>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12 news-items">
-                            <a href="https://www.youtube.com/watch?v=AlfwEmTnGMY"
-                               title="Apple chuẩn bị tổ chức họp báo tại New York, Macbook Pro 16 inch sẽ ra mắt tại đây?"
-                               class="clearfix">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-                                     data-lazyload="https://cdn.tgdd.vn/Files/2019/11/12/1218049/mbp_sidebyside-3_800x449-300x200.jpg"
-                                     alt="Apple chuẩn bị tổ chức họp báo tại New York, Macbook Pro 16 inch sẽ ra mắt tại đây?"
-                                     class="img-responsive center-block"/>
-                                <h3>Apple chuẩn bị tổ chức họp báo tại New York, Macbook Pro 16 inch sẽ ra mắt tại
-                                    đây?</h3>
+                            <a href="/xuat-hien-hinh-anh-render-sac-net-cua-smartphone-oppo-zoom-quang-10x" title="Apple chuẩn bị tổ chức họp báo tại New York, Macbook Pro 16 inch sẽ ra mắt tại đây?" class="clearfix">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-lazyload="https://cdn.tgdd.vn/Files/2019/11/12/1218049/mbp_sidebyside-3_800x449-300x200.jpg" alt="Apple chuẩn bị tổ chức họp báo tại New York, Macbook Pro 16 inch sẽ ra mắt tại đây?" class="img-responsive center-block" />
+                                <h3>Apple chuẩn bị tổ chức họp báo tại New York, Macbook Pro 16 inch sẽ ra mắt tại đây?</h3>
                                 <div class="date_added">Ngày đăng: 26/02/2019</div>
                             </a>
                         </div>
@@ -1058,7 +507,7 @@
                                     <a href="https://www.twitter.com/" target="_blank">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve" width="15px" height="15px">
                                        <g>
-                                          <path d="M612,116.258c-22.525,9.981-46.694,16.75-72.088,19.772c25.929-15.527,45.777-40.155,55.184-69.411    c-24.322,14.379-51.169,24.82-79.775,30.48c-22.907-24.437-55.49-39.658-91.63-39.658c-69.334,0-125.551,56.217-125.551,125.513    c0,9.828,1.109,19.427,3.251,28.606C197.065,206.32,104.556,156.337,42.641,80.386c-10.823,18.51-16.98,40.078-16.98,63.101    c0,43.559,22.181,81.993,55.835,104.479c-20.575-0.688-39.926-6.348-56.867-15.756v1.568c0,60.806,43.291,111.554,100.693,123.104    c-10.517,2.83-21.607,4.398-33.08,4.398c-8.107,0-15.947-0.803-23.634-2.333c15.985,49.907,62.336,86.199,117.253,87.194    c-42.947,33.654-97.099,53.655-155.916,53.655c-10.134,0-20.116-0.612-29.944-1.721c55.567,35.681,121.536,56.485,192.438,56.485    c230.948,0,357.188-191.291,357.188-357.188l-0.421-16.253C573.872,163.526,595.211,141.422,612,116.258z" data-original="#010002" class="active-path" data-old_color="#010002" fill="#FFFFFF"/>
+                                           <path d="M612,116.258c-22.525,9.981-46.694,16.75-72.088,19.772c25.929-15.527,45.777-40.155,55.184-69.411    c-24.322,14.379-51.169,24.82-79.775,30.48c-22.907-24.437-55.49-39.658-91.63-39.658c-69.334,0-125.551,56.217-125.551,125.513    c0,9.828,1.109,19.427,3.251,28.606C197.065,206.32,104.556,156.337,42.641,80.386c-10.823,18.51-16.98,40.078-16.98,63.101    c0,43.559,22.181,81.993,55.835,104.479c-20.575-0.688-39.926-6.348-56.867-15.756v1.568c0,60.806,43.291,111.554,100.693,123.104    c-10.517,2.83-21.607,4.398-33.08,4.398c-8.107,0-15.947-0.803-23.634-2.333c15.985,49.907,62.336,86.199,117.253,87.194    c-42.947,33.654-97.099,53.655-155.916,53.655c-10.134,0-20.116-0.612-29.944-1.721c55.567,35.681,121.536,56.485,192.438,56.485    c230.948,0,357.188-191.291,357.188-357.188l-0.421-16.253C573.872,163.526,595.211,141.422,612,116.258z" data-original="#010002" class="active-path" data-old_color="#010002" fill="#FFFFFF"/>
                                        </g>
                                     </svg>
                                     </a>
@@ -1174,29 +623,29 @@
              width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;"
              xml:space="preserve">
                <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
-                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s"
-                           repeatCount="indefinite"/>
+                   <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s"
+                            repeatCount="indefinite"/>
                    <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s"
                             repeatCount="indefinite"/>
                    <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s"
                             repeatCount="indefinite"/>
                </rect>
             <rect x="8" y="10" width="4" height="10" fill="#333" opacity="0.2">
-                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s"
-                           repeatCount="indefinite"/>
+                <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s"
+                         repeatCount="indefinite"/>
                 <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s"
                          repeatCount="indefinite"/>
                 <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s"
                          repeatCount="indefinite"/>
-               </rect>
+            </rect>
             <rect x="16" y="10" width="4" height="10" fill="#333" opacity="0.2">
-                  <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s"
-                           repeatCount="indefinite"/>
+                <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s"
+                         repeatCount="indefinite"/>
                 <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s"
                          repeatCount="indefinite"/>
                 <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s"
                          repeatCount="indefinite"/>
-               </rect>
+            </rect>
             </svg>
     </div>
 </div>
@@ -1460,72 +909,99 @@
         });
     });
 </script>
-<div class="support-cart mini-cart hidden-sm hidden-xs">
-    <a class="btn-support-cart" href="giohang.html">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
-             viewBox="0 0 435.104 435.104" style="enable-background:new 0 0 435.104 435.104;" xml:space="preserve"
-             width="30px" height="30px">
+<div class="support-cart mini-cart hidden-sm hidden-xs" >
+    <a class="btn-support-cart" href="<%=Utils.fullPath("ShowCart")%>" >
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 435.104 435.104" style="enable-background:new 0 0 435.104 435.104;" xml:space="preserve" width="30px" height="30px">
                <g>
-                  <circle cx="154.112" cy="377.684" r="52.736" data-original="#000000" class="active-path"
-                          data-old_color="#Ffffff" fill="#FFFFFF"/>
-                   <path d="M323.072,324.436L323.072,324.436c-29.267-2.88-55.327,18.51-58.207,47.777c-2.88,29.267,18.51,55.327,47.777,58.207     c3.468,0.341,6.962,0.341,10.43,0c29.267-2.88,50.657-28.94,47.777-58.207C368.361,346.928,348.356,326.924,323.072,324.436z"
-                         data-original="#000000" class="active-path" data-old_color="#F8F8F8" fill="#FFFFFF"/>
-                   <path d="M431.616,123.732c-2.62-3.923-7.059-6.239-11.776-6.144h-58.368v-1.024C361.476,54.637,311.278,4.432,249.351,4.428     C187.425,4.424,137.22,54.622,137.216,116.549c0,0.005,0,0.01,0,0.015v1.024h-43.52L78.848,50.004     C77.199,43.129,71.07,38.268,64,38.228H0v30.72h51.712l47.616,218.624c1.257,7.188,7.552,12.397,14.848,12.288h267.776     c7.07-0.041,13.198-4.901,14.848-11.776l37.888-151.552C435.799,132.019,434.654,127.248,431.616,123.732z M249.344,197.972     c-44.96,0-81.408-36.448-81.408-81.408s36.448-81.408,81.408-81.408s81.408,36.448,81.408,81.408     C330.473,161.408,294.188,197.692,249.344,197.972z"
-                         data-original="#000000" class="active-path" data-old_color="#F8F8F8" fill="#FFFFFF"/>
-                   <path d="M237.056,118.1l-28.16-28.672l-22.016,21.504l38.912,39.424c2.836,2.894,6.7,4.55,10.752,4.608     c3.999,0.196,7.897-1.289,10.752-4.096l64.512-60.928l-20.992-22.528L237.056,118.1z"
-                         data-original="#000000" class="active-path" data-old_color="#F8F8F8" fill="#FFFFFF"/>
+                   <circle cx="154.112" cy="377.684" r="52.736" data-original="#000000" class="active-path" data-old_color="#Ffffff" fill="#FFFFFF"/>
+                   <path d="M323.072,324.436L323.072,324.436c-29.267-2.88-55.327,18.51-58.207,47.777c-2.88,29.267,18.51,55.327,47.777,58.207     c3.468,0.341,6.962,0.341,10.43,0c29.267-2.88,50.657-28.94,47.777-58.207C368.361,346.928,348.356,326.924,323.072,324.436z" data-original="#000000" class="active-path" data-old_color="#F8F8F8" fill="#FFFFFF"/>
+                   <path d="M431.616,123.732c-2.62-3.923-7.059-6.239-11.776-6.144h-58.368v-1.024C361.476,54.637,311.278,4.432,249.351,4.428     C187.425,4.424,137.22,54.622,137.216,116.549c0,0.005,0,0.01,0,0.015v1.024h-43.52L78.848,50.004     C77.199,43.129,71.07,38.268,64,38.228H0v30.72h51.712l47.616,218.624c1.257,7.188,7.552,12.397,14.848,12.288h267.776     c7.07-0.041,13.198-4.901,14.848-11.776l37.888-151.552C435.799,132.019,434.654,127.248,431.616,123.732z M249.344,197.972     c-44.96,0-81.408-36.448-81.408-81.408s36.448-81.408,81.408-81.408s81.408,36.448,81.408,81.408     C330.473,161.408,294.188,197.692,249.344,197.972z" data-original="#000000" class="active-path" data-old_color="#F8F8F8" fill="#FFFFFF"/>
+                   <path d="M237.056,118.1l-28.16-28.672l-22.016,21.504l38.912,39.424c2.836,2.894,6.7,4.55,10.752,4.608     c3.999,0.196,7.897-1.289,10.752-4.096l64.512-60.928l-20.992-22.528L237.056,118.1z" data-original="#000000" class="active-path" data-old_color="#F8F8F8" fill="#FFFFFF"/>
                </g>
             </svg>
         <div class="animated infinite zoomIn kenit-alo-circle"></div>
         <div class="animated infinite pulse kenit-alo-circle-fill"></div>
-        <span class="cnt crl-bg count_item_pr">1</span>
-    </a>
+        <% Cart c =(Cart) session.getAttribute("Cart");
+            int count = c == null ? 0 : c.list().size();
+        %>
+        <span class="cnt crl-bg count_item_pr"><%=count%></span>
 
+    </a>
     <div class="top-cart-content hidden-md hidden-sm hidden-xs">
         <ul>
-            <div id="popup-cart">
+            <div id="popup-cart" >
                 <div id="popup-cart-desktop" class="clearfix">
-                    <div class="title-popup-cart"><i class="ion ion-md-notifications-outline" aria-hidden="true"></i>
-                        Bạn đã thêm <span class="cart-popup-name"></span> vào giỏ hàng
-                    </div>
-                    <div class="title-quantity-popup"><a href="giohang.html" title="Giỏ hàng của bạn">Giỏ hàng của bạn
-                        có <span class="cart-popup-count"></span> sản phẩm</a></div>
+                    <div class="title-popup-cart"><i class="ion ion-md-notifications-outline" aria-hidden="true"></i> Bạn đã thêm <span class="cart-popup-name"></span> vào giỏ hàng</div>
+                    <div class="title-quantity-popup"><a href="" title="Giỏ hàng của bạn">Giỏ hàng của bạn có <span class="cart-popup-count"></span> sản phẩm</a></div>
                     <div class="content-popup-cart clearfix">
-                        <div class="thead-popup">
-                            <div style="width: 55%;" class="text-left">Sản phẩm</div>
-                            <div style="width: 15%;" class="text-center">Đơn giá</div>
-                            <div style="width: 15%;" class="text-center">Số lượng</div>
-                            <div style="width: 15%;" class="text-center">Thành tiền</div>
-                            <div style="width: 55%;" class="text-left">Laptop Dell Inspiron</div>
-                            <div style="width: 15%;" class="text-center">17.390.000đ</div>
-                            <div style="width: 15%;" class="text-center">1</div>
-                            <div style="width: 15%;" class="text-center">17.390.000đ</div>
-                        </div>
+                        <form action="/cart" method="post" id="cartformpage">
+                            <table >
+                                <thead>
+                                <tr>
+                                    <th class="item" style="height: 100%; width: 35%">Tên sản phẩm</th>
+                                    <th class="img-spde" style="height: 100%; width: 15%">Hình ảnh</th>
+                                    <th class="qty" style="height: 100%; width: 15%">Số lượng</th>
+                                    <th class="price" style="height: 100%; width: 15%">Giá tiền</th>
+                                    <th class="total-money" style="height: 100%; width: 20%">Thành tiền</th>
+                                </tr>
+                                </thead>
+                                <%
+                                    if (c==null) c=new Cart();
+                                    for (Product pd:c.list()){
+                                %>
+                                <tbody>
+                                <tr>
+                                    <td class="item">
+                                        <a href="">
+                                            <strong><%=pd.getName()%></strong>
+
+                                        </a>
+                                    </td>
+                                    <td class="img-spde">
+                                        <a href="">
+                                            <strong><img src="<%=pd.getImg()%>"></strong>
+
+                                        </a>
+                                    </td>
+                                    <td class="qty">
+                                        <input type="number" size="4" name="updates[]" min="1" id="updates_1012030836" value="<%=pd.getQuantity()%>" onfocus="this.select();" class="tc item-quantity" />
+                                    </td>
+                                    <td class="price"><%=pd.getPrice()%></td>
+                                    <td class="total-money"><%=pd.total()%></td>
+                                </tr>
+                                <%--                                <tr class="summary">--%>
+                                <%--                                    <td>&nbsp;</td>--%>
+                                <%--                                    <td>&nbsp;</td>--%>
+                                <%--                                    <td class="text-center"><b>Tổng cộng:</b></td>--%>
+                                <%--                                    <td class="price">--%>
+                                <%--								<span class="total">--%>
+                                <%--									<strong><%=c.total()%></strong>--%>
+                                <%--								</span>--%>
+                                <%--                                    </td>--%>
+                                <%--                                </tr>--%>
+                                </tbody>
+                                <%}%>
+                            </table>
+
+                        </form>
                         <div class="tbody-popup"></div>
                         <div class="tfoot-popup">
                             <div class="tfoot-popup-1 clearfix">
-                                <div class="pull-left popupcon"><a href="index.html" class="button btn-continue"
-                                                                   title="Tiếp tục mua hàng"
-                                                                   onclick="$('#popup-cart').modal('hide');"><span><span><i
-                                        class="fa fa-caret-left" aria-hidden="true"></i> Tiếp tục mua hàng</span></span></a>
-                                </div>
+                                <!--                                        <div class="pull-left popupcon"><a class="button btn-continue" title="Tiếp tục mua hàng"><span><span><i class="fa fa-caret-left" aria-hidden="true"></i> Tiếp tục mua hàng</span></span></a></div>-->
                                 <div class="pull-right popup-total">
-                                    <p>Thành tiền: <span class="total-price"></span> 17.390.000đ</p>
+                                    <p>Tổng tiền: <span class="total-price"> <%=c != null ? c.total() : 0%></span></p>
                                 </div>
                             </div>
-                            <div class="tfoot-popup-2 clearfix"><a class="button btn-proceed-checkout"
-                                                                   title="Thanh toán đơn hàng"
-                                                                   href="giohang.html"><span>Thanh toán đơn hàng</span></a>
-                            </div>
+                            <div class="tfoot-popup-2 clearfix"><a class="button btn-proceed-checkout" title="Thanh toán đơn hàng" href="<%=Utils.fullPath("ShowCart")%>"><span>Thanh toán đơn hàng</span></a></div>
                         </div>
                     </div>
-                    <a class="quickview-close close-window" href="javascript:" onclick="$('#popup-cart').modal('hide');"
-                       title="Đóng"><i class="fa fa-times"></i></a>
+
                 </div>
             </div>
-        </ul>
-    </div>
 
+        </ul>
+
+    </div>
 </div>
 <div id="menu-overlay" class=""></div>
 </body>

@@ -1,3 +1,12 @@
+<%@ page import="utils.Utils" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="model.Cart" %>
+<%@ page import="model.Product" %>
+<%@ page import="controller.cart.Cart2" %>
+<%@ page import="connection.ConnectionDB" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -41,237 +50,102 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="bg-body">
-<header class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-2 col-100-h">
-                <div class="tab text-center">
-                    <!--                    Tạo nút tài khoản ở góc trên bên trái của giao diện trang chủ-->
-                    <ul class="nav register">
-                        <li class="nav-item1 has-mega">
-                            <a href="register.html">
-                                <i class="fas fa-user-circle fa-2x"></i>
-                                <div class="account">Tài khoản <i class="fa fa-angle-down"
-                                                                  data-toggle="dropdown"></i></div>
-                            </a>
-                            <div class="mega-content">
-                                <ul class="level0">
-                                    <li class="level1 parent item">
-                                        <a class="hmega" href="sanpham.html" title="Laptop">Tài khoản của tôi</a>
-                                        <ul class="level1 register-btn">
-                                            <li class="level2">
-                                                <div class="login"><a href="sign.html"><i
-                                                        class="fa fa-sign-in-alt"></i> Đăng
-                                                    nhập</a></div>
-                                            </li>
-                                            <li class="level2">
-                                                <div class="register"><a href="register.html"><i
-                                                        class="fa fa-registered"></i> Đăng kí</a></div>
-                                            </li>
-                                            <li class="level2 padding-top-5">
-                                                <div class="logout"><a href="#"><i class="fa fa-sign-out-alt"></i> Đăng
-                                                    xuất</a></div>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 add-arrow">
-                <form class="search-bar has-validation-callback" action="/search" method="get" role="search">
-                    <input type="search" name="query" value="" placeholder="Tìm kiếm..."
-                           class="input-group-field search-text" autocomplete="off">
-                    <button class="btn icon-fallback-text">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                             x="0px" y="0px" viewBox="0 0 451 451" style="enable-background:new 0 0 451 451;"
-                             xml:space="preserve" width="20px" height="20px">
-                           <g>
-                              <g>
-                                 <path d="M447.05,428l-109.6-109.6c29.4-33.8,47.2-77.9,47.2-126.1C384.65,86.2,298.35,0,192.35,0C86.25,0,0.05,86.3,0.05,192.3   s86.3,192.3,192.3,192.3c48.2,0,92.3-17.8,126.1-47.2L428.05,447c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4   C452.25,441.8,452.25,433.2,447.05,428z M26.95,192.3c0-91.2,74.2-165.3,165.3-165.3c91.2,0,165.3,74.2,165.3,165.3   s-74.1,165.4-165.3,165.4C101.15,357.7,26.95,283.5,26.95,192.3z"
-                                       data-original="#000000" class="active-path" data-old_color="#ff3300"
-                                       fill="#ff3300"/>
-                              </g>
-                           </g>
-                        </svg>
-                    </button>
-                </form>
-                <div class="arrow-left"></div>
-            </div>
-            <div class="col-md-6 col-lg-6 nav-bg-white hidden-sm hidden-xs">
-                <ul id="nav" class="nav">
-                    <li class="nav-item active"><a class="nav-link" href="index.html" title="Trang chủ">Trang chủ</a>
-                    </li>
-                    <li class="nav-item "><a class="nav-link" href="#" title="Giới thiệu">Giới thiệu</a>
-                    </li>
-                    <li class="nav-item has-mega">
-                        <a href="#" class="nav-link" title="Sản phẩm">Sản phẩm <i class="fa fa-angle-down"
-                                                                                  data-toggle="dropdown"></i></a>
-                        <div class="mega-content">
-                            <ul class="level0">
-                                <li class="level1 parent item">
-                                    <a class="hmega" href="#" title="Laptop">Laptop</a>
-                                    <ul class="level1">
-                                        <li class="level2">
-                                            <a href="#" title="Apple (Macbook)">Apple (Macbook)</a>
-                                        </li>
-                                        <li class="level2">
-                                            <a href="#" title="Asus">Asus</a>
-                                        </li>
-                                        <li class="level2">
-                                            <a href="#" title="Dell">Dell</a>
-                                        </li>
-                                        <li class="level2">
-                                            <a href="#" title="HP">HP</a>
-                                        </li>
-                                        <li class="level2">
-                                            <a href="#" title="Lenovo">Lenovo</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-                            <div class="img-menusp" style="float: left; margin-left: 180px; margin-top: -180px">
-                                <img height="200px;" width="580px"
-                                     src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-822a6.jpg">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#" class="nav-link" title="Tin tức">Tin tức </a>
-
-                    </li>
-                    <li class="nav-item "><a class="nav-link" href="#" title="Liên hệ">Liên hệ</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
+<jsp:include page="header.jsp"/>
 <section class="bread-crumb margin-bottom-10">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <ul class="breadcrumb" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                    <li class="home"><a itemprop="url" href="index.html" title="Trang chủ"><span itemprop="title">Trang chủ</span></a><span><i
-                            class="fa fa-angle-right"></i></span></li>
-                    <li><strong><span itemprop="title">Giỏ hàng</span></strong></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="bread-crumb margin-bottom-10">
-    <div class="container">
-        <div class="row">
-            <div id="layout-page" class="col-md-12 col-sm-12 col-xs-12">
-                <!--			<span class="header-page clearfix">-->
-                <!--				<h1>Giỏ hàng</h1>-->
-                <!--			</span>-->
-                <form action="/cart" method="post" id="cartformpage">
-                    <table class="table table-bordered table-responsive">
-                        <thead>
-                        <tr>
-                            <th class="image text-center">Mẫu mã</th>
-                            <th class="item">Tên sản phẩm</th>
-                            <th class="qty">Số lượng</th>
-                            <th class="price">Giá tiền</th>
-                            <th class="remove text-center">Xóa</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+	<div class="container">
+		<div class="row" >
+			<div id="layout-page" class="col-md-12 col-sm-12 col-xs-12">
+			<span class="header-page clearfix">
+				<h1>Giỏ hàng</h1>
+			</span>
+				<form action="<%=Utils.fullPath("Update")%>" method="post" id="cartformpage">
+					<table>
+						<thead>
+						<tr>
+							<th class="image">&nbsp;</th>
+							<th class="item">Tên sản phẩm</th>
+							<th class="price">Giá tiền</th>
+							<th class="qty">Số lượng</th>
+							<th class="total-money">Thành tiền</th>
+							<th class="remove">&nbsp;</th>
+						</tr>
+						</thead>
+						<tbody>
 
-                        <tr>
-                            <td class="image">
-                                <div class="product_image">
-                                    <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                        <img src="https://cdn.tgdd.vn/Products/Images/44/106875/apple-macbook-air-mqd32sa-a-i5-5350u-180x125.png"
-                                             alt=""/>
+						<% Cart c = (Cart) request.getAttribute("Cart");
+							if (c==null) c=new Cart();
+							for (Product p:c.list()){
+						%>
+						<tr>
+							<td class="image">
+								<div class="product_image">
+									<a href="">
+										<center>
+											<img src="<%=p.getImg()%>" height="80%" width="80px" alt="" />
+										</center>
+									</a>
+								</div>
+							</td>
+							<td class="item">
+								<a href="">
+									<strong><%=p.getName()%></strong>
 
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="item">
-                                <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                    <strong>Laptop Apple MacBook Air 2018 i5/8GB/256GB (MREF2SA/A)
+								</a>
+							</td>
+							<td class="price"><%=p.getPrice()%></td>
+							<td class="qty">
+								<form method="post" action="<%=Utils.fullPath("Update")%>">
+									<input type="hidden" name="id" value="<%=p.getId()%>">
+									<input type="number" name="quantity" style="float: left;clear: right" value="<%=p.getQuantity()%>">
+									<input type="submit" value="▲" style="width: 15%">
+								</form>
+							</td>
 
-                                    </strong>
+							<td class="total-money"><%=p.total()%></td>
+							<td class="remove">
+								<a href="<%=Utils.fullPath("Delete?id="+p.getId())%>" class="cart">Xóa</a>
+							</td>
+						</tr>
+						<%}%>
+						<tr class="summary">
+							<td class="image">&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td class="text-center"><b>Tổng cộng:</b></td>
+							<td class="price">
+								<span class="total">
+									<strong><%=c.total()%></strong>
+								</span>
+							</td>
+							<td>&nbsp;</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12 inner-left inner-right">
+							<div class="checkout-buttons clearfix">
+								<label for="note">Ghi chú </label>
+								<textarea id="note" name="note" rows="8" cols="50"></textarea>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 cart-buttons inner-right inner-left">
+							<div class="buttons clearfix nutthanhtoan">
+								<%--								<a href="" type="submit" id="update-cart" class="button-default bd1">Cập nhật</a>--%>
+								<a href="thanhtoan.jsp" type="submit" id="checkout" class="button-default bd2">Thanh toán</a>
 
-                                </a>
-                            </td>
-                            <td class="qty">
-                                <input type="number" size="4" name="updates[]" min="1" id="updates_1012030836" value="1"
-                                       onfocus="this.select();" class="tc item-quantity"/>
-                            </td>
-                            <td class="price">32,980,000₫</td>
-                            <td class="remove text-center">
-                                <button class="btn1 btn-outline-danger"><a href="/cart/change?line=1&quantity=0" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a></button>
-                            </td>
-                        </tr>
+							</div>
+						</div>
+						<div class="col-md-12 col-sm-12  col-xs-12 continue-shop">
 
-                        <tr>
-                            <td class="image">
-                                <div class="product_image">
-                                    <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                        <img src="https://cdn.tgdd.vn/Products/Images/44/207682/apple-macbook-air-2019-i5-16ghz-8gb-128gb-mvfm2sa-1-3-180x125.jpg "
-                                             alt=""/>
+							<a  href="<%=Utils.fullPath("trangchu") %>">
+								<i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
+						</div>
 
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="item">
-                                <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                    <strong>Laptop Apple MacBook Air 2018 i5/8GB/128GB (MRE82SA/A)</strong>
-
-                                </a>
-                            </td>
-                            <td class="qty">
-                                <input type="number" size="4" name="updates[]" min="1" id="updates_1012006173" value="1"
-                                       onfocus="this.select();" class="tc item-quantity"/>
-                            </td>
-                            <td class="price">22,400,000₫</td>
-                            <td class="remove text-center">
-                                <button class="btn1 btn-outline-danger"><a href="/cart/change?line=1&quantity=0" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="cart-total">
-                        <div class="col-lg-6 col-lg-offset-6 txt_center">
-                            <div class="cart__total__amount">
-                                <span>Tổng tiền</span>
-                                <span>90.000đ</span>
-                            </div>
-                        </div>
-                        <div class="cartbox__btn col-lg-6 col-lg-offset-6">
-                            <ul class="cart__btn__list flexbox f-right justify-content-between margin-top-5">
-                                <li><button class="btn btn-info margin-right-5"><a href="#">Cập nhật</a></button></li>
-                                <li><button class="btn btn-info"><a href="#">Tiến hành đặt hàng</a></button></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12 inner-left inner-right">
-                            <div class="checkout-buttons clearfix">
-                                <label for="note">Ghi chú </label>
-                                <textarea id="note" name="note" rows="8" cols="50"
-                                          placeholder="Ý kiến của bạn về sản phẩm và yêu cầu về dịch vụ giao hàng của chúng tôi"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-sm-12  col-xs-12 continue-shop">
-
-                            <a href="sanpham.html">
-                                <i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </section>
 
 <link href="css/bpr-products-module.scss.css" rel="stylesheet" type="text/css"/>

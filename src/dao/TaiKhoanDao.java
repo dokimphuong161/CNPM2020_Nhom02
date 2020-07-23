@@ -83,27 +83,24 @@ public class TaiKhoanDao {
             Logger.getLogger(TaiKhoanDao.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
-    public TaiKhoan layTaiKhoanTrongDB(String tenDangNhap, String matKhau) {
-        TaiKhoan taiKhoan = null;
-        matKhau = maHoaMD5(matKhau);
-        String sql = "SELECT * FROM `taikhoan` WHERE tenDangNhap= '" + tenDangNhap + "' AND matKhau= '" +matKhau+"'";
-        try {
-            Connection cons = ConnectionDB.getConnection();
-            PreparedStatement ps = cons.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                taiKhoan = new TaiKhoan();
-                taiKhoan.setMaTaiKhoan(rs.getString(1));
-                taiKhoan.setTenDangNhap(rs.getString(2));
-                taiKhoan.setEmail(rs.getString(3));
-            }
-            cons.close();
-        } catch (ClassNotFoundException | SQLException ex) {
-            return null;
-        }
-        return taiKhoan;
-    }
-
-
+	public TaiKhoan layTaiKhoanTrongDB(String tenDangNhap, String matKhau) {
+		TaiKhoan taiKhoan = null;
+		matKhau = maHoaMD5(matKhau);
+		String sql = "SELECT * FROM `taikhoan` WHERE tenDangNhap= '" + tenDangNhap + "' AND matKhau= '" +matKhau+"'";
+		try {
+			Connection cons = ConnectionDB.getConnection();
+			PreparedStatement ps = cons.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				taiKhoan = new TaiKhoan();
+				taiKhoan.setMaTaiKhoan(rs.getString(1));
+				taiKhoan.setTenDangNhap(rs.getString(2));
+				taiKhoan.setEmail(rs.getString(3));
+			}
+			cons.close();
+		} catch (ClassNotFoundException | SQLException ex) {
+			return null;
+		}
+		return taiKhoan;
+	}
 }
