@@ -51,6 +51,22 @@
 </head>
 <body class="bg-body">
 <jsp:include page="header.jsp"/>
+<<<<<<< HEAD
+=======
+<section class="bread-crumb margin-bottom-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="breadcrumb" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <li class="home"><a itemprop="url" href="index.html" title="Trang chủ"><span itemprop="title">Trang chủ</span></a><span><i
+                            class="fa fa-angle-right"></i></span></li>
+                    <li><strong><span itemprop="title">Giỏ hàng</span></strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+>>>>>>> 36973f35e9245406cd7612373f724d7a6f7631ee
 <section class="bread-crumb margin-bottom-10">
 	<div class="container">
 		<div class="row" >

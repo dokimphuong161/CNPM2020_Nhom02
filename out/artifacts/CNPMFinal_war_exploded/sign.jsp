@@ -50,7 +50,7 @@
     </div>
 
 <div class="form-login-regeter">
-<form class="form-login-regeter" action="/action_page.php" method="post">
+<form class="form-login-regeter" action="<%=Utils.fullPath("dangnhap")%>" method="post">
     <div class="imgcontainer ">
         <div class="option">
             <div class="w3-content w3-section" style="max-width:780px">
@@ -62,22 +62,26 @@
 
         </div>
     </div>
-
+    <%  String mess = (String) request.getAttribute("message");
+        String tenDangNhap = (String) request.getAttribute("tenDangNhap");
+        if(tenDangNhap == null) tenDangNhap ="";
+    %>
     <div class=" login-geter">
+        <% if(mess != null) { %>
+        <div class="alert-danger padding-20"> <%=mess%></div>
+        <% } %>
         <label ><b>Tên đăng nhập</b></label>
-        <input class=" login-geter1" type="text" placeholder="Tên đăng nhập hoặc Email" name="uname" required>
+        <input class=" login-geter1" type="text" placeholder="Tên đăng nhập hoặc Email" name="uname" value="<%=tenDangNhap%>" required>
 
         <label ><b>Mật khẩu</b></label>
-        <input class=" login-geter1" type="password" placeholder="Nhập mậu khẩu" name="psw" required>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Nhớ mật khẩu
-        </label>
+        <input class=" login-geter1" type="password" placeholder="Nhập mậu khẩu" name="pwd" required>
 
-        <button class="login-buton" type="submit"><a href="sign.html" style="color: #fefefe">Đăng nhập</a></button>
+
+        <button class="login-buton" type="submit"><a href="" style="color: #fefefe">Đăng nhập</a></button>
 
 
         <div class="container-loginadd" >
-            <a class="cancelbtn"  href="register.html" >Đăng kí</a> &emsp;
+            <a class="cancelbtn"  href="<%=Utils.fullPath("dangky")%>" >Đăng kí</a> &emsp;
             <span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
 
         </div>

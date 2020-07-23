@@ -7,15 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d0ea10e-9180-4b78-bf73-c140826ecfa8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/connection/ConnectionDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dao/TaiKhoanDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TaiKhoan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CNPMFinal.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/CNPMFinal.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CNPMFinal.iws" beforeDir="false" afterPath="$PROJECT_DIR$/CNPMFinal.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/WEB-INF/classes/controller/DangKyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/WEB-INF/classes/controller/DangKyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/Macbockctsp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/Macbockctsp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/WEB-INF/classes/dao/TaiKhoanDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/WEB-INF/classes/dao/TaiKhoanDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/giohang.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/giohang.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNPMFinal/controller/DangKyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNPMFinal/controller/DangKyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/sign.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CNPMFinal_war_exploded/sign.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CNPMFinal/dao/TaiKhoanDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNPMFinal/dao/TaiKhoanDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/DangKyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DangKyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
     </list>
@@ -183,7 +182,11 @@
       <option name="presentableId" value="Default" />
       <updated>1595299411659</updated>
       <workItem from="1595299415486" duration="13442000" />
-      <workItem from="1595338585547" duration="14272000" />
+      <workItem from="1595338585547" duration="15028000" />
+      <workItem from="1595355423476" duration="947000" />
+      <workItem from="1595380655601" duration="260000" />
+      <workItem from="1595429161995" duration="2373000" />
+      <workItem from="1595512446039" duration="1679000" />
     </task>
     <servers />
   </component>

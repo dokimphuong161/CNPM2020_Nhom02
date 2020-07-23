@@ -1,9 +1,13 @@
 <%@ page import="utils.Utils" %>
+<<<<<<< HEAD
 <%@ page import="model.TaiKhoan" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="connection.ConnectionDB" %>
 <%--
+=======
+<%@ page import="model.TaiKhoan" %><%--
+>>>>>>> 36973f35e9245406cd7612373f724d7a6f7631ee
   Created by IntelliJ IDEA.
   User: WIN10
   Date: 23/07/2020
@@ -84,6 +88,7 @@
             </div>
             <div class="col-md-6 col-lg-6 nav-bg-white hidden-sm hidden-xs">
                 <ul id="nav" class="nav">
+<<<<<<< HEAD
                     <li class="nav-item "><a class="nav-link" href="<%=Utils.fullPath("trangchu") %>" title="Trang chủ">Trang chủ</a></li>
                     <li class="nav-item "><a class="nav-link" href="gioithieu.jsp" title="Giới thiệu">Giới thiệu</a></li>
                     <li class="nav-item has-mega">
@@ -102,10 +107,40 @@
                                         <li class="level2"><a href="<%=Utils.fullPath("ListProduct?type="+rs.getInt(1)) %>" ><%= rs.getString(2) %></a></li>
                                         <% } %>
 
+=======
+                    <li class="nav-item active"><a class="nav-link" href="index.html" title="Trang chủ">Trang chủ</a>
+                    </li>
+                    <li class="nav-item "><a class="nav-link" href="#" title="Giới thiệu">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item has-mega">
+                        <a href="#" class="nav-link" title="Sản phẩm">Sản phẩm <i class="fa fa-angle-down"
+                                                                                  data-toggle="dropdown"></i></a>
+                        <div class="mega-content">
+                            <ul class="level0">
+                                <li class="level1 parent item">
+                                    <a class="hmega" href="#" title="Laptop">Laptop</a>
+                                    <ul class="level1">
+                                        <li class="level2">
+                                            <a href="#" title="Apple (Macbook)">Apple (Macbook)</a>
+                                        </li>
+                                        <li class="level2">
+                                            <a href="#" title="Asus">Asus</a>
+                                        </li>
+                                        <li class="level2">
+                                            <a href="#" title="Dell">Dell</a>
+                                        </li>
+                                        <li class="level2">
+                                            <a href="#" title="HP">HP</a>
+                                        </li>
+                                        <li class="level2">
+                                            <a href="#" title="Lenovo">Lenovo</a>
+                                        </li>
+>>>>>>> 36973f35e9245406cd7612373f724d7a6f7631ee
                                     </ul>
                                 </li>
 
                             </ul>
+<<<<<<< HEAD
                         </div>
                     </li>
                     <li class="nav-item ">
@@ -113,6 +148,19 @@
 
                     </li>
                     <li class="nav-item "><a class="nav-link" href="lienhe.jsp" title="Liên hệ">Liên hệ</a></li>
+=======
+                            <div class="img-menusp" style="float: left; margin-left: 180px; margin-top: -180px">
+                                <img height="200px;" width="580px"
+                                     src="https://img1.phongvu.vn/media/banner/pv-banner-897x341-822a6.jpg">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#" class="nav-link" title="Tin tức">Tin tức </a>
+
+                    </li>
+                    <li class="nav-item "><a class="nav-link" href="#" title="Liên hệ">Liên hệ</a></li>
+>>>>>>> 36973f35e9245406cd7612373f724d7a6f7631ee
                 </ul>
             </div>
         </div>

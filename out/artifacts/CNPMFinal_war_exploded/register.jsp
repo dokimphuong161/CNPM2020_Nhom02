@@ -131,9 +131,15 @@
 				<!--                <button class="login-buton" type="submit"><a href="sign.html" style="color: #fefefe">Đăng nhập</a></button>-->
 
 
+<<<<<<< HEAD
 				<div class="container-loginadd">
 					<a class="cancelbtn" href="sign.html">Đăng nhập</a>
 					<span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
+=======
+                <div class="container-loginadd">
+                    <a class="cancelbtn" href="<%=Utils.fullPath("dangnhap")%>">Đăng nhập</a>
+                    <span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
+>>>>>>> 36973f35e9245406cd7612373f724d7a6f7631ee
 
 				</div>
 
