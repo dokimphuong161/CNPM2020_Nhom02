@@ -84,8 +84,10 @@
 	</div>
 
 	<div class="form-login-regeter">
+		<%--Use case: Đăng ký.
+		B2.1: Hệ thống hiển thị form để người dùng nhập thông tin cần thiết
+		(tên đăng nhập, email, mật khẩu, nhập lại mật khẩu).--%>
 		<form class="form-login-regeter" action="<%=Utils.fullPath("dangky")%>" method="POST">
-
 			<div class="imgcontainer ">
 				<div class="option">
 					<div class="w3-content w3-section" style="max-width:780px">
@@ -131,15 +133,9 @@
 				<!--                <button class="login-buton" type="submit"><a href="sign.html" style="color: #fefefe">Đăng nhập</a></button>-->
 
 
-<<<<<<< HEAD
-				<div class="container-loginadd">
-					<a class="cancelbtn" href="sign.html">Đăng nhập</a>
-					<span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
-=======
                 <div class="container-loginadd">
                     <a class="cancelbtn" href="<%=Utils.fullPath("dangnhap")%>">Đăng nhập</a>
                     <span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
->>>>>>> 36973f35e9245406cd7612373f724d7a6f7631ee
 
 				</div>
 

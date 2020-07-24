@@ -17,11 +17,6 @@ public class Chitietsanpham extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("id");
         try {
-            String sql = "SELECT id, `name` FROM producttype";
-            Statement s = ConnectionDB.getPreparedStatement(sql);
-
-            ResultSet rs = s.executeQuery(sql);
-            request.setAttribute("rs", rs);
 
 
             String sql1 = "SELECT id, des, `name`,img, price, pricea, tinhtrang, dungluong, dungluonga, mausac, mausaca, manhinh, hedieuhanh, cameratruoc, camerasau, cpu, ram, bonhotrong, thesim, dungluongpin, mota, tinhnang, noidung, imgdemo, noidunga, imgdemoa, noidungb, imgdemob FROM sanpham WHERE active=1 ";

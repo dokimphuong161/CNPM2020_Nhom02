@@ -1,8 +1,7 @@
 <%@ page import="utils.Utils" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="model.Cart" %>
-<%@ page import="model.Product" %>
-<%@ page import="controller.cart.Cart2" %>
+<%@ page import="model.GioHang" %>
+<%@ page import="model.SanPham" %>
 <%@ page import="connection.ConnectionDB" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -51,30 +50,42 @@
 </head>
 <body class="bg-body">
 <jsp:include page="header.jsp"/>
+<%--usecase thêm cào giỏ hàng:
+    B4.1 : Hệ thống sẽ hiển thị sản phẩm được thêm vào giỏ hàng tại giao diện trang giỏ hàng.--%>
+
+<section class="bread-crumb margin-bottom-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="breadcrumb" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <li class="home"><a itemprop="url" href="index.html" title="Trang chủ"><span itemprop="title">Trang chủ</span></a><span><i
+                            class="fa fa-angle-right"></i></span></li>
+                    <li><strong><span itemprop="title">Giỏ hàng</span></strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="bread-crumb margin-bottom-10">
 	<div class="container">
 		<div class="row" >
 			<div id="layout-page" class="col-md-12 col-sm-12 col-xs-12">
-			<span class="header-page clearfix">
-				<h1>Giỏ hàng</h1>
-			</span>
-				<form action="<%=Utils.fullPath("Update")%>" method="post" id="cartformpage">
+				<form action="<%=Utils.fullPath("CartController?type=capnhat")%>" method="post" id="cartformpage">
 					<table>
 						<thead>
 						<tr>
-							<th class="image">&nbsp;</th>
-							<th class="item">Tên sản phẩm</th>
-							<th class="price">Giá tiền</th>
-							<th class="qty">Số lượng</th>
-							<th class="total-money">Thành tiền</th>
-							<th class="remove">&nbsp;</th>
+                            <th class="image text-center">Mẫu mã</th>
+                            <th class="item">Tên sản phẩm</th>
+                            <th class="price">Giá tiền</th>
+                            <th class="qty">Số lượng</th>
+                            <th class="remove text-center">Xóa</th>
 						</tr>
 						</thead>
 						<tbody>
 
-						<% Cart c = (Cart) request.getAttribute("Cart");
-							if (c==null) c=new Cart();
-							for (Product p:c.list()){
+						<% GioHang c = (GioHang) request.getAttribute("Cart");
+							if (c==null) c=new GioHang();
+							for (SanPham p:c.list()){
 						%>
 						<tr>
 							<td class="image">
@@ -92,56 +103,51 @@
 
 								</a>
 							</td>
-							<td class="price"><%=p.getPrice()%></td>
+                            <td class="price"><%=p.getPrice()%></td>
 							<td class="qty">
-								<form method="post" action="<%=Utils.fullPath("Update")%>">
+								<form method="post" action="<%=Utils.fullPath("CartController?type=capnhat")%>">
 									<input type="hidden" name="id" value="<%=p.getId()%>">
 									<input type="number" name="quantity" style="float: left;clear: right" value="<%=p.getQuantity()%>">
 									<input type="submit" value="▲" style="width: 15%">
 								</form>
 							</td>
-
-							<td class="total-money"><%=p.total()%></td>
-							<td class="remove">
-								<a href="<%=Utils.fullPath("Delete?id="+p.getId())%>" class="cart">Xóa</a>
-							</td>
+                            <td class="remove text-center">
+                                <a href="<%=Utils.fullPath("CartController?type=xoa&&id="+p.getId())%>" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a>
+                            </td>
 						</tr>
-						<%}%>
-						<tr class="summary">
-							<td class="image">&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td class="text-center"><b>Tổng cộng:</b></td>
-							<td class="price">
-								<span class="total">
-									<strong><%=c.total()%></strong>
-								</span>
-							</td>
-							<td>&nbsp;</td>
-						</tr>
+                        <%}%>
 						</tbody>
 					</table>
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-12 inner-left inner-right">
-							<div class="checkout-buttons clearfix">
-								<label for="note">Ghi chú </label>
-								<textarea id="note" name="note" rows="8" cols="50"></textarea>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-12 cart-buttons inner-right inner-left">
-							<div class="buttons clearfix nutthanhtoan">
-								<%--								<a href="" type="submit" id="update-cart" class="button-default bd1">Cập nhật</a>--%>
-								<a href="thanhtoan.jsp" type="submit" id="checkout" class="button-default bd2">Thanh toán</a>
+                    <div class="cart-total">
+                        <div class="col-lg-6 col-lg-offset-6 txt_center">
+                            <div class="cart__total__amount">
+                                <span>Tổng tiền</span>
+                                <span><%=c.total()%></span>
+                            </div>
+                        </div>
+                        <div class="cartbox__btn col-lg-6 col-lg-offset-6">
+                            <ul class="cart__btn__list flexbox f-right justify-content-between margin-top-5">
+                                <li><button class="btn btn-info margin-right-5"><a href="#">Cập nhật</a></button></li>
+                                <li><button class="btn btn-info"><a href="#">Tiến hành đặt hàng</a></button></li>
+                            </ul>
+                        </div>
+                    </div>
 
-							</div>
-						</div>
-						<div class="col-md-12 col-sm-12  col-xs-12 continue-shop">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 inner-left inner-right">
+                            <div class="checkout-buttons clearfix">
+                                <label for="note">Ghi chú </label>
+                                <textarea id="note" name="note" rows="8" cols="50"
+                                          placeholder="Ý kiến của bạn về sản phẩm và yêu cầu về dịch vụ giao hàng của chúng tôi"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12  col-xs-12 continue-shop">
 
-							<a  href="<%=Utils.fullPath("trangchu") %>">
-								<i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
-						</div>
+                            <a href="sanpham.html">
+                                <i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
+                        </div>
 
-					</div>
+                    </div>
 				</form>
 			</div>
 		</div>

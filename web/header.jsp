@@ -16,39 +16,47 @@
         <div class="row">
             <div class="col-lg-2 col-md-2 col-100-h">
                 <div class="tab text-center">
-                    <!--                    Tạo nút tài khoản ở góc trên bên trái của giao diện trang chủ-->
+
                     <ul class="nav register">
                         <li class="nav-item1 has-mega">
                             <% TaiKhoan taiKhoan = (TaiKhoan) session.getAttribute("Auth");%>
                             <a href="<%=Utils.fullPath("trangchu")%>">
                                 <i class="fas fa-user-circle fa-2x"></i>
-                                <% if(taiKhoan != null) {%>
-                                <div class="account">Xin chào, <%=taiKhoan.getTenDangNhap()%> <i class="fa fa-angle-down"
-                                                                  data-toggle="dropdown"></i></div>
+                                <% if (taiKhoan != null) {%>
+                                <div class="account">Xin chào, <%=taiKhoan.getTenDangNhap()%> <i
+                                        class="fa fa-angle-down"
+                                        data-toggle="dropdown"></i></div>
                                 <% } else { %>
                                 <div class="account">Tài khoản <i class="fa fa-angle-down"
-                                                                                                 data-toggle="dropdown"></i></div>
+                                                                  data-toggle="dropdown"></i></div>
                                 <% } %>
                             </a>
                             <div class="mega-content">
                                 <ul class="level0">
                                     <li class="level1 parent item">
-                                        <a class="hmega" href="sanpham.html" title="Laptop">Tài khoản của tôi</a>
                                         <ul class="level1 register-btn">
-                                            <% if(taiKhoan == null) { %>
+                                            <% if (taiKhoan == null) { %>
                                             <li class="level2">
+                                                <%--Use case: Đăng nhập.
+                                                B1.Khách hàng đưa chuột vào icon tài khoản ở góc trên bên trái của giao diện.
+                                                Giao diện sẽ xuất hiện một dropdown menu chứa các nút chức năng: đăng nhập, đăng ký.
+                                                Khách hàng chọn vào nút đăng nhập.
+                                                --%>
                                                 <div class="login"><a href="<%=Utils.fullPath("dangnhap")%>"><i
-                                                        class="fa fa-sign-in-alt"></i> Đăng
-                                                    nhập</a></div>
+                                                        class="fa fa-sign-in-alt"></i> Đăng nhập</a></div>
                                             </li>
                                             <li class="level2">
-                                                <%--Bước 1: Khách hàng chọn nút đăng ký--%>
+                                                <%--Use case: Đăng ký.
+                                                B1.Khách hàng đưa chuột vào icon tài khoản ở góc trên bên trái của giao diện.
+                                                Giao diện sẽ xuất hiện một dropdown menu chứa các nút chức năng: đăng nhập, đăng ký.
+                                                Khách hàng chọn vào nút đăng ký.--%>
                                                 <div class="register"><a href="<%=Utils.fullPath("dangky")%>"><i
                                                         class="fa fa-registered"></i> Đăng kí</a></div>
                                             </li>
                                             <% } else { %>
                                             <li class="level2 padding-top-5">
-                                                <div class="logout"><a href="<%=Utils.fullPath("dangxuat")%>"><i class="fa fa-sign-out-alt"></i> Đăng
+                                                <div class="logout"><a href="<%=Utils.fullPath("dangxuat")%>"><i
+                                                        class="fa fa-sign-out-alt"></i> Đăng
                                                     xuất</a></div>
                                             </li>
                                             <% } %>
@@ -84,24 +92,20 @@
             </div>
             <div class="col-md-6 col-lg-6 nav-bg-white hidden-sm hidden-xs">
                 <ul id="nav" class="nav">
-                    <li class="nav-item "><a class="nav-link" href="<%=Utils.fullPath("trangchu") %>" title="Trang chủ">Trang chủ</a></li>
-                    <li class="nav-item "><a class="nav-link" href="gioithieu.jsp" title="Giới thiệu">Giới thiệu</a></li>
+                    <li class="nav-item "><a class="nav-link" href="<%=Utils.fullPath("trangchu") %>" title="Trang chủ">Trang
+                        chủ</a></li>
+                    <li class="nav-item "><a class="nav-link" href="#" title="Giới thiệu">Giới thiệu</a></li>
                     <li class="nav-item has-mega">
-                        <a href="<%=Utils.fullPath("ListProduct") %>" class="nav-link" title="Sản phẩm">Sản phẩm <i class="fa fa-angle-down" data-toggle="dropdown"></i></a>
+                        <a href="#" class="nav-link" title="Sản phẩm">Sản phẩm <i class="fa fa-angle-down"
+                                                                                  data-toggle="dropdown"></i></a>
                         <div class="mega-content">
                             <ul class="level0">
                                 <li class="level1 parent item">
-                                    <a class="hmega" href="<%=Utils.fullPath("ListProduct") %>" title="Laptop">Tất cả sản phẩm</a>
+                                    <a class="hmega" href="" title="Laptop">Tất cả sản phẩm</a>
                                     <ul class="level1">
-                                        <%
-                                            String sql = "SELECT id, name FROM producttype WHERE active=1 ";
-                                            PreparedStatement s = ConnectionDB.getPreparedStatement(sql);
-                                            ResultSet rs = s.executeQuery(sql);
-                                            request.setAttribute("rs", rs);
-                                            while (rs.next()) { %>
-                                        <li class="level2"><a href="<%=Utils.fullPath("ListProduct?type="+rs.getInt(1)) %>" ><%= rs.getString(2) %></a></li>
-                                        <% } %>
-
+                                        <li class="level2"><a href="">Iphone</a></li>
+                                        <li class="level2"><a href="">Samsung</a></li>
+                                        <li class="level2"><a href="">Iphone</a></li>
                                     </ul>
                                 </li>
 
@@ -109,10 +113,10 @@
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a href="tintuc.jsp" class="nav-link" title="Tin tức">Tin tức</a>
+                        <a href="#" class="nav-link" title="Tin tức">Tin tức</a>
 
                     </li>
-                    <li class="nav-item "><a class="nav-link" href="lienhe.jsp" title="Liên hệ">Liên hệ</a></li>
+                    <li class="nav-item "><a class="nav-link" href="#" title="Liên hệ">Liên hệ</a></li>
                 </ul>
             </div>
         </div>

@@ -1,3 +1,11 @@
+<%@ page import="utils.Utils" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="model.GioHang" %>
+<%@ page import="model.SanPham" %>
+<%@ page import="connection.ConnectionDB" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -42,6 +50,9 @@
 </head>
 <body class="bg-body">
 <jsp:include page="header.jsp"/>
+<%--usecase thêm cào giỏ hàng:
+    B4.1 : Hệ thống sẽ hiển thị sản phẩm được thêm vào giỏ hàng tại giao diện trang giỏ hàng.--%>
+
 <section class="bread-crumb margin-bottom-10">
     <div class="container">
         <div class="row">
@@ -56,85 +67,62 @@
     </div>
 </section>
 <section class="bread-crumb margin-bottom-10">
-    <div class="container">
-        <div class="row">
-            <div id="layout-page" class="col-md-12 col-sm-12 col-xs-12">
-                <!--			<span class="header-page clearfix">-->
-                <!--				<h1>Giỏ hàng</h1>-->
-                <!--			</span>-->
-                <form action="/cart" method="post" id="cartformpage">
-                    <table class="table table-bordered table-responsive">
-                        <thead>
-                        <tr>
+	<div class="container">
+		<div class="row" >
+			<div id="layout-page" class="col-md-12 col-sm-12 col-xs-12">
+				<form action="<%=Utils.fullPath("CartController?type=capnhat")%>" method="post" id="cartformpage">
+					<table>
+						<thead>
+						<tr>
                             <th class="image text-center">Mẫu mã</th>
                             <th class="item">Tên sản phẩm</th>
-                            <th class="qty">Số lượng</th>
                             <th class="price">Giá tiền</th>
+                            <th class="qty">Số lượng</th>
                             <th class="remove text-center">Xóa</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+						</tr>
+						</thead>
+						<tbody>
 
-                        <tr>
-                            <td class="image">
-                                <div class="product_image">
-                                    <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                        <img src="https://cdn.tgdd.vn/Products/Images/44/106875/apple-macbook-air-mqd32sa-a-i5-5350u-180x125.png"
-                                             alt=""/>
+						<% GioHang c = (GioHang) request.getAttribute("Cart");
+							if (c==null) c=new GioHang();
+							for (SanPham p:c.list()){
+						%>
+						<tr>
+							<td class="image">
+								<div class="product_image">
+									<a href="">
+										<center>
+											<img src="<%=p.getImg()%>" height="80%" width="80px" alt="" />
+										</center>
+									</a>
+								</div>
+							</td>
+							<td class="item">
+								<a href="">
+									<strong><%=p.getName()%></strong>
 
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="item">
-                                <a href="/products/dong-ho-nam-skmei-kim-xanh-duong">
-                                    <strong>Laptop Apple MacBook Air 2018 i5/8GB/256GB (MREF2SA/A)
-
-                                    </strong>
-
-                                </a>
-                            </td>
-                            <td class="qty">
-                                <input type="number" size="4" name="updates[]" min="1" id="updates_1012030836" value="1"
-                                       onfocus="this.select();" class="tc item-quantity"/>
-                            </td>
-                            <td class="price">32,980,000₫</td>
+								</a>
+							</td>
+                            <td class="price"><%=p.getPrice()%></td>
+							<td class="qty">
+								<form method="post" action="<%=Utils.fullPath("CartController?type=capnhat")%>">
+									<input type="hidden" name="id" value="<%=p.getId()%>">
+									<input type="number" name="quantity" style="float: left;clear: right" value="<%=p.getQuantity()%>">
+									<input type="submit" value="▲" style="width: 15%">
+								</form>
+							</td>
                             <td class="remove text-center">
-                                <button class="btn1 btn-outline-danger"><a href="/cart/change?line=1&quantity=0" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a></button>
+                                <a href="<%=Utils.fullPath("CartController?type=xoa&&id="+p.getId())%>" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a>
                             </td>
-                        </tr>
-
-                        <tr>
-                            <td class="image">
-                                <div class="product_image">
-                                    <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                        <img src="https://cdn.tgdd.vn/Products/Images/44/207682/apple-macbook-air-2019-i5-16ghz-8gb-128gb-mvfm2sa-1-3-180x125.jpg "
-                                             alt=""/>
-
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="item">
-                                <a href="/products/dong-ho-nam-tevise-1952-chay-co-cuc-chat">
-                                    <strong>Laptop Apple MacBook Air 2018 i5/8GB/128GB (MRE82SA/A)</strong>
-
-                                </a>
-                            </td>
-                            <td class="qty">
-                                <input type="number" size="4" name="updates[]" min="1" id="updates_1012006173" value="1"
-                                       onfocus="this.select();" class="tc item-quantity"/>
-                            </td>
-                            <td class="price">22,400,000₫</td>
-                            <td class="remove text-center">
-                                <button class="btn1 btn-outline-danger"><a href="/cart/change?line=1&quantity=0" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+						</tr>
+                        <%}%>
+						</tbody>
+					</table>
                     <div class="cart-total">
                         <div class="col-lg-6 col-lg-offset-6 txt_center">
                             <div class="cart__total__amount">
                                 <span>Tổng tiền</span>
-                                <span>90.000đ</span>
+                                <span><%=c.total()%></span>
                             </div>
                         </div>
                         <div class="cartbox__btn col-lg-6 col-lg-offset-6">
@@ -144,6 +132,7 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12 inner-left inner-right">
                             <div class="checkout-buttons clearfix">
@@ -159,10 +148,10 @@
                         </div>
 
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
+				</form>
+			</div>
+		</div>
+	</div>
 </section>
 
 <link href="css/bpr-products-module.scss.css" rel="stylesheet" type="text/css"/>

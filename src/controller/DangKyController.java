@@ -21,6 +21,8 @@ public class DangKyController extends HttpServlet {
     TaiKhoanDao taiKhoanDao = new TaiKhoanDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Use case: Đăng ký.
+        //B2. Hệ thống gọi phương thức trả về trang đăng ký.
         traVeTrangDangKy(request, response);
     }
 
@@ -36,6 +38,10 @@ public class DangKyController extends HttpServlet {
         rd.forward(request, response);
     }
 
+        //Use case: Đăng ký.
+        // B3: Hệ thống lấy thông tin người dùng vừa nhập,
+        //kiểm tra xem tài khoản đã tồn tại hay chưa, kiểm tra thông tin mà người dùng nhập có đúng định dạng hay không.
+        //Có 2 trường hợp:
     private TaiKhoan layThongTinDangKy(HttpServletRequest request) {
         TaiKhoan tk = new TaiKhoan();
         tk.setTenDangNhap(request.getParameter("uname"));
@@ -56,7 +62,9 @@ public class DangKyController extends HttpServlet {
         String password_error = "";
         String repass_error = "";
 
-        //Kiểm tra tên đăng nhập:
+        //Use case: Đăng ký.
+        // B3.1. Nếu kiểm tra thông tin đăng ký là sai: hiển thị các thông báo sai tương ứng ở form
+        //(các trường rỗng, email sai định dạng, mật khẩu không đủ mạnh, mật khẩu nhập lại chưa đúng).
         if (name.equals("")) {
             name_error = "✖ Vui lòng nhập tên!";
         } else if (taiKhoanDao.kiemTraTaiKhoan(name) == true) {
@@ -99,6 +107,9 @@ public class DangKyController extends HttpServlet {
         String url = "/register.jsp";
 
         try {
+            //Use case: Đăng ký.
+            //B3.2. Nếu kiểm tra thông tin đăng ký là đúng: lưu thông tin đăng ký của người dùng
+            //vào database, chuyển đến trang đăng nhập.
             if (name_error.length() == 0 && email_error.length() == 0 && password_error.length() == 0 && repass_error.length() == 0) {
                 Date id = new Date();
                 taiKhoan = new TaiKhoan("" + id.getTime(), name, email, taiKhoanDao.maHoaMD5(password), 2, 1);
@@ -114,14 +125,5 @@ public class DangKyController extends HttpServlet {
         }
 
     }
-
-    private void traVeThongBao(String noiDung, HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
-        request.setAttribute("message", noiDung);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
-        rd.forward(request, response);
-    }
-
-
 
 }

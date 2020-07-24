@@ -62,27 +62,38 @@
 
         </div>
     </div>
-    <%  String mess = (String) request.getAttribute("message");
+    <% String mess = (String) request.getAttribute("message");
         String tenDangNhap = (String) request.getAttribute("tenDangNhap");
-        if(tenDangNhap == null) tenDangNhap ="";
+        if(tenDangNhap == null) tenDangNhap = "";
     %>
+
+    <%--Use case: Đăng nhập.
+		B2.1: Hệ thống hiển thị form để người dùng nhập thông tin đăng nhập
+		(tên đăng nhập, mật khẩu). và các nút Đăng ký, Quên mật khẩu--%>
+
     <div class=" login-geter">
-        <% if(mess != null) { %>
-        <div class="alert-danger padding-20"> <%=mess%></div>
+        <% if (mess != null) { %>
+        <div class="alert-danger padding-20"><%=mess%></div>
         <% } %>
+
         <label ><b>Tên đăng nhập</b></label>
-        <input class=" login-geter1" type="text" placeholder="Tên đăng nhập hoặc Email" name="uname" value="<%=tenDangNhap%>" required>
+        <input class=" login-geter1" type="text" placeholder="Tên đăng nhập" name="uname" required value="<%=tenDangNhap%>">
 
         <label ><b>Mật khẩu</b></label>
         <input class=" login-geter1" type="password" placeholder="Nhập mậu khẩu" name="pwd" required>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Nhớ mật khẩu
+        </label>
 
-
-        <button class="login-buton" type="submit"><a href="" style="color: #fefefe">Đăng nhập</a></button>
+        <%-- Use case: Đăng nhập
+            B3: Người dùng nhập thông tin đăng nhập vào form và nhấn Enter hoặc chọn nút Đăng nhập
+        --%>
+        <button class="login-buton" type="submit"><a style="color: #fefefe">Đăng nhập</a></button>
 
 
         <div class="container-loginadd" >
             <a class="cancelbtn"  href="<%=Utils.fullPath("dangky")%>" >Đăng kí</a> &emsp;
-            <span class="adpsw">Quên <a href="forgotpass.html">Mật khẩu?</a></span>
+            <span class="adpsw">Quên <a href="#">Mật khẩu?</a></span>
 
         </div>
     </div>
