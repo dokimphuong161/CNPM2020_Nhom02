@@ -81,14 +81,14 @@
 
         <label ><b>Mật khẩu</b></label>
         <input class=" login-geter1" type="password" placeholder="Nhập mậu khẩu" name="pwd" required>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Nhớ mật khẩu
-        </label>
+
 
         <%-- Use case: Đăng nhập
             B3: Người dùng nhập thông tin đăng nhập vào form và nhấn Enter hoặc chọn nút Đăng nhập
         --%>
         <button class="login-buton" type="submit"><a style="color: #fefefe">Đăng nhập</a></button>
+        <button class="btn btn-primary" type="submit"><i class="fab fa-facebook-square"></i> Đăng nhập bằng Facebook</button>
+        <button class="btn btn-danger" type="submit"><a style="color: #fefefe">Đăng nhập bằng Google</a></button>
 
 
         <div class="container-loginadd" >

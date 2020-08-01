@@ -1,6 +1,15 @@
 package model;
 
 public class TaiKhoan {
+    String hoVaTen;
+    public String getHoVaTen() {
+        return hoVaTen;
+    }
+
+    public void setHoVaTen(String hoVaTen) {
+        this.hoVaTen = hoVaTen;
+    }
+
     String maTaiKhoan;
     String tenDangNhap;
     String email;
@@ -17,7 +26,8 @@ public class TaiKhoan {
         this.matKhau = matKhau;
     }
 
-    public TaiKhoan(String maTaiKhoan, String tenDangNhap, String email, String matKhau, int quyenTruyCap, int trangThai) {
+    public TaiKhoan(String maTaiKhoan, String hoVaTen, String tenDangNhap, String email, String matKhau, int quyenTruyCap, int trangThai) {
+        this.hoVaTen = hoVaTen;
         this.maTaiKhoan = maTaiKhoan;
         this.tenDangNhap = tenDangNhap;
         this.email = email;

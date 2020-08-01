@@ -69,8 +69,6 @@
         re_password = (String) request.getAttribute("repass");
     }
 
-    String yeuCauXacThuc = (String) request.getAttribute("yeuCauXacThuc");
-
 %>
 <jsp:include page="header.jsp"/>
 <script src="js/jquery.min.js" type="text/javascript"></script>
@@ -86,7 +84,6 @@
     </div>
 
     <div class="form-login-regeter">
-        <% if(yeuCauXacThuc == null) {%>
         <%--Use case: Đăng ký.
         B2.1: Hệ thống hiển thị form để người dùng nhập thông tin cần thiết
         (tên đăng nhập, email, mật khẩu, nhập lại mật khẩu).--%>
@@ -106,50 +103,28 @@
             </div>
 
             <div class=" login-geterform">
-                <label><b>Họ và tên</b>
-                    <p style="color: red"><%=name_error%>
-                    </p></label>
-                <input class=" login-geter1" type="text" placeholder="Nhập họ tên" name="fullname"
-                       required>
 
-                <label><b>Tên đăng nhập</b>
-                    <p style="color: red"><%=name_error%>
-                    </p></label>
-                <input class=" login-geter1" type="text" placeholder="Tên đăng nhập" value="<%=name%>" name="uname"
-                       required>
 
-                <label><b>Email</b>
-                    <p style="color: red"><%=email_error%>
-                    </p></label>
-                <input class=" login-geter1" type="text" placeholder="Email hoặc Số điện thoại" value="<%=email%>"
-                       name="uemail" required>
+                				<label><b>Mật khẩu</b>
+                					<p style="color: red"><%=password_error%>
+                					</p></label>
+                				<input class=" login-geter1" type="password" placeholder="Nhập mậu khẩu" name="pwd" required>
 
-                <label><b>Mật khẩu</b>
-                    <p style="color: red"><%=password_error%>
-                    </p></label>
-                <input class=" login-geter1" type="password" placeholder="Nhập mậu khẩu" name="pwd" required>
+                				<label><b>Nhập lại mật khẩu</b>
+                					<p style="color: red"><%=repass_error%>
+                					</p></label>
+                				<input class=" login-geter1" type="password" placeholder="Nhập lại mật khẩu" name="pwd1" required>
 
-                <label><b>Nhập lại mật khẩu</b>
-                    <p style="color: red"><%=repass_error%>
-                    </p></label>
-                <input class=" login-geter1" type="password" placeholder="Nhập lại mật khẩu" name="pwd1" required>
-                <input type="hidden" value="xacThucMail" name="tacVu">
                 <button class="login-buton" type="submit">Đăng kí</button>
+                <!--                <button class="login-buton" type="submit"><a href="sign.html" style="color: #fefefe">Đăng nhập</a></button>-->
 
 
-                <div class="container-loginadd">
-                    <a class="cancelbtn" href="<%=Utils.fullPath("dangnhap")%>">Đăng nhập</a>
-                </div>
+
 
             </div>
 
 
         </form>
-        <%} else {%>
-        <div class="alert alert-info">
-            <h5><%=yeuCauXacThuc%></h5>
-        </div>
-        <% }%>
     </div>
     <div class="right-login">
         <div class="img-left-login">
