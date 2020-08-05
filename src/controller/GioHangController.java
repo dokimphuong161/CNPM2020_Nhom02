@@ -28,11 +28,11 @@ public class GioHangController extends HttpServlet {
             xoaSanPham(request, response);
         }
         if(type != null && type.equals("capnhat")) {
-            capNhat(request, response);
+            capNhatSoLuong(request, response);
         }
         traVeTrangGioHang(request,response);
     }
-
+//4. gọi phương thức themgiohang()
     private  void themGioHang(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             HttpSession session = request.getSession();
@@ -45,7 +45,7 @@ public class GioHangController extends HttpServlet {
         }catch (NumberFormatException e){
         }
     }
-
+//11. gọi phương thức xoasanpham()
     private void xoaSanPham(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
@@ -57,7 +57,8 @@ public class GioHangController extends HttpServlet {
         }catch (NumberFormatException e){
         }
     }
-    private void capNhat(HttpServletRequest request, HttpServletResponse response) {
+//8. Gọi phương thức capnhatsoluong()
+    private void capNhatSoLuong(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
             int id = Integer.parseInt(request.getParameter("id"));
@@ -72,6 +73,7 @@ public class GioHangController extends HttpServlet {
     private void layTacVu(HttpServletRequest request) {
         type = request.getParameter("type");
     }
+//4.1 gọi phương thức travetranggiohang()
     private void traVeTrangGioHang(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         GioHang c = (GioHang) request.getSession().getAttribute("Cart");
         request.setAttribute("Cart",c);
