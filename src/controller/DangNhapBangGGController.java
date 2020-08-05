@@ -1,9 +1,8 @@
 package controller;
 
-import dao.TaiKhoanDao;
-import model.TaiKhoan;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,18 +16,14 @@ import org.apache.http.client.fluent.Request;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Version;
-import com.restfb.types.User;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
+import dao.TaiKhoanDao;
+import model.TaiKhoan;
 
 @WebServlet("/dangnhapbangGG")
 public class DangNhapBangGGController extends HttpServlet {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	TaiKhoan taiKhoan = null;
@@ -51,22 +46,17 @@ public class DangNhapBangGGController extends HttpServlet {
 		} else {
 			//3.3.2: Hệ thống lấy  chuỗi mã  token từ code của Google
 			String accessToken = layToken(code);
-			
-			//3.3.3: Hệ thống lấy thông tin người dừng từ chuỗi token
-			GooglePojo user = layThongTinNguoiDung(accessToken);
-			taiKhoan = new TaiKhoan(user.getId(), user.getEmail().split("@")[0], "", user.getEmail(), "", 2, 1);
-			
+
+			//3.3.3: Hệ thống kiểm tra mã Id của tài khoản người dùng đã tồn tại trong Dữ liệu của hệ thống chưa.
+			taiKhoan = layThongTinNguoiDung(accessToken);
+
 			//3.3.4: Hệ thống kiểm tra mã Id của tài khoản người dùng
 			//-- Nếu chưa có thì thêm vào database
 			if (taiKhoanDao.kiemTraTaiKhoanTheoId(taiKhoan.getMaTaiKhoan()) == false) {
-				try {
-					taiKhoanDao.themTaiKhoan(taiKhoan);
-				} catch (URISyntaxException e) {
-					e.printStackTrace();
-				}
+				taiKhoanDao.themTaiKhoan(taiKhoan);
 			}
-			
-			//3.3.5: Hệ thống duy trì trạng thái đăng nhập 
+
+			//3.3.5: Hệ thống trả về trang chủ và duy trì trạng thái đăng nhập
 			HttpSession session = request.getSession();
 			session.setAttribute("Auth", taiKhoan);
 			response.sendRedirect(request.getContextPath() + "/trangchu");
@@ -79,7 +69,7 @@ public class DangNhapBangGGController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	public static String layToken(final String code) throws ClientProtocolException, IOException {
+	public String layToken(String code) throws ClientProtocolException, IOException {
 		String response = Request.Post(GOOGLE_LINK_GET_TOKEN)
 				.bodyForm(Form.form().add("client_id", GOOGLE_CLIENT_ID).add("client_secret", GOOGLE_CLIENT_SECRET)
 						.add("redirect_uri", GOOGLE_REDIRECT_URI).add("code", code).add("grant_type", GOOGLE_GRANT_TYPE)
@@ -90,11 +80,12 @@ public class DangNhapBangGGController extends HttpServlet {
 		return accessToken;
 	}
 
-	public static GooglePojo layThongTinNguoiDung(final String accessToken) throws ClientProtocolException, IOException {
-		String link = GOOGLE_LINK_GET_USER_INFO + accessToken;
+	public TaiKhoan layThongTinNguoiDung(String maToken) throws ClientProtocolException, IOException {
+		String link = GOOGLE_LINK_GET_USER_INFO + maToken;
 		String response = Request.Get(link).execute().returnContent().asString();
-		GooglePojo googlePojo = new Gson().fromJson(response, GooglePojo.class);
-		return googlePojo;
+		GooglePojo user = new Gson().fromJson(response, GooglePojo.class);
+
+		return new TaiKhoan(user.getId(), user.getEmail().split("@")[0], "", user.getEmail(), "", 2, 1);
 	}
 }
 
