@@ -103,4 +103,21 @@ public class TaiKhoanDao {
 		}
 		return taiKhoan;
 	}
+
+    //Kiem tra tai khoan nay da ton tai id Facebook chua:
+    public boolean kiemTraTaiKhoanTheoId(String id) {
+        String sql = "SELECT * FROM taikhoan WHERE maTaiKhoan= '" + id + "'";
+        try {
+            Connection cons = ConnectionDB.getConnection();
+            PreparedStatement ps = cons.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            cons.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TaiKhoanDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
