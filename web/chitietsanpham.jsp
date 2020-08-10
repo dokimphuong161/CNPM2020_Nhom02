@@ -47,8 +47,6 @@
 <script src="js/api.jquery.js?4" type="text/javascript"></script>
 <script src="js/owl.carousel.min.js" type="text/javascript"></script>
 
-<%--    usecase-thêm cào giỏ hàng:
-        B2. Hệ thống sẽ hiển thị giao diện chi tiết của sản phẩm đó.--%>
 <%
 	ResultSet p = (ResultSet) request.getAttribute("p");
 	while (p.next()){
@@ -255,7 +253,6 @@
 <%--            usecase-thêm cào giỏ hàng:
                 B3: Khách hàng thành viên/nhân viên/quản trị viên chọn thêm vào giỏ hàng.--%>
 								<div class="btn-mua">
-
 <%--            B4: Hệ thống gọi phương thức trả về trang giỏ hàng.--%>
                                     <a href="<%=Utils.fullPath("CartController?type=add&&id="+p.getInt(1))%>" type="submit" data-role='addtocart' style="display: inline-block; text-align: center" >
 										<span class="txt-main"><i class="fa fa-shopping-cart padding-right-10"></i> Cho vào giỏ</span>

@@ -21,18 +21,23 @@ public class GioHangController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         layTacVu(request);
+        //Use case: thêm vào giỏ hàng
+        //B4: Hệ thống gọi phương thức trả về trang giỏ hàng.
         if(type != null && type.equals("add")) {
             themGioHang(request, response);
         }
+        //B11.1: Hệ thống gọi phương thức trả về trang giỏ hàng.
         if(type != null && type.equals("xoa")) {
             xoaSanPham(request, response);
         }
+        //B8.1: Hệ thống gọi phương thức trả về trang giỏ hàng.
         if(type != null && type.equals("capnhat")) {
             capNhatSoLuong(request, response);
         }
+
         traVeTrangGioHang(request,response);
     }
-//4. gọi phương thức themgiohang()
+
     private  void themGioHang(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             HttpSession session = request.getSession();
@@ -45,7 +50,7 @@ public class GioHangController extends HttpServlet {
         }catch (NumberFormatException e){
         }
     }
-//11. gọi phương thức xoasanpham()
+//B11: Hệ thống  gọi phương thức xóa sản phẩm.
     private void xoaSanPham(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
@@ -57,7 +62,7 @@ public class GioHangController extends HttpServlet {
         }catch (NumberFormatException e){
         }
     }
-//8. Gọi phương thức capnhatsoluong()
+//B8: Hệ thống gọi phương thức cập nhật số lượng.
     private void capNhatSoLuong(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();

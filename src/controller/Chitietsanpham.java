@@ -25,6 +25,8 @@ public class Chitietsanpham extends HttpServlet {
             PreparedStatement s1 = ConnectionDB.getPreparedStatement(sql1);
             ResultSet p = s1.executeQuery();
             request.setAttribute("p", p);
+//Use case: thêm vào giỏ hàng
+// B2. Hệ thống sẽ hiển thị giao diện chi tiết của sản phẩm đó.
             request.getRequestDispatcher("chitietsanpham.jsp").forward(request, response);
 
         } catch (ClassNotFoundException | SQLException e) {

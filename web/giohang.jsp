@@ -50,8 +50,6 @@
 </head>
 <body class="bg-body">
 <jsp:include page="header.jsp"/>
-<%--usecase thêm cào giỏ hàng:
-    B4.1 : Hệ thống sẽ hiển thị sản phẩm được thêm vào giỏ hàng tại giao diện trang giỏ hàng.--%>
 
 <section class="bread-crumb margin-bottom-10">
     <div class="container">
@@ -107,12 +105,30 @@
 							<td class="qty">
 								<form method="post" action="<%=Utils.fullPath("CartController?type=capnhat")%>">
 									<input type="hidden" name="id" value="<%=p.getId()%>">
+                                    <%--Use case: thêm vào giỏ hàng
+                                    B6: Tại trang giỏ hàng, khách hàng thành viên/nhân viên/quản trị viên chọn mũi tên lên (xuống)
+                                     bên phải trường “số lượng" để tăng (giảm) số lượng sản phẩm.
+
+                                    --%>
 									<input type="number" name="quantity" style="float: left;clear: right" value="<%=p.getQuantity()%>">
+                                    <%--Use case: thêm vào giỏ hàng
+                                    B7: khách hàng thành viên/nhân viên/quản trị viên chọn
+                                     biểu tượng tam giác kế bên trường “số lượng” để cập nhật lại thay đổi.
+                                    --%>
 									<input type="submit" value="▲" style="width: 15%">
+                                    <%--Use case: thêm vào giỏ hàng
+                                    B9: Hệ thống sẽ hiển thị giao diện trang giỏ hàng đã xóa sản phẩm.
+                                   --%>
 								</form>
 							</td>
                             <td class="remove text-center">
+                                <%--Use case: thêm vào giỏ hàng
+                                 B10: khách hàng thành viên/nhân viên/quản trị viên chọn icon thùng rác để xóa sản phẩm khỏi giỏ hàng.
+                                --%>
                                 <a href="<%=Utils.fullPath("CartController?type=xoa&&id="+p.getId())%>" class="cart"><i class="fa fa-trash-alt" title="Xóa"></i></a>
+                                    <%--Use case: thêm vào giỏ hàng
+                                  B12: Hệ thống sẽ hiển thị giao diện trang giỏ hàng đã xóa sản phẩm.
+                                  --%>
                             </td>
 						</tr>
                         <%}%>

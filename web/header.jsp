@@ -52,6 +52,7 @@
                                                 Giao diện sẽ xuất hiện một dropdown menu chứa các nút dẫn tới chức năng:
                                                 đăng nhập, đăng ký. Khách hàng chọn vào vào nút đăng ký.--%>
                                                 <div class="register" style="padding-right: 10px">
+                                                    <%--B2: Hệ thống gọi đến trang đăng ký.--%>
                                                     <button class="register" style="border: none; color: white" onclick="window.location.href='<%=Utils.fullPath("dangky")%>';"><i class="fa fa-registered"></i> Đăng kí</button>
                                                 </div>
                                             </li>
