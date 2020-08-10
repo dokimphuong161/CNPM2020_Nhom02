@@ -35,6 +35,7 @@
     <!--    <link rel="stylesheet" href="css/loginstyle.css">-->
 </head>
 <body>
+<%--Tạo ra các giá trị lỗi--%>
 <%
     String fullname_error = "";
     String name_error = "";
@@ -57,7 +58,7 @@
     if (request.getAttribute("repass_err") != null) {
         repass_error = (String) request.getAttribute("repass_err");
     }
-
+<%--Tạo ra các giá trị thông tin người dùng--%>
     String fullname = "";
     String name = "";
     String email = "";
@@ -99,8 +100,8 @@
     <div class="form-login-regeter">
         <% if(yeuCauXacThuc == null) {%>
         <%--Use case: Đăng ký.
-        B2.1: Hệ thống hiển thị form để người dùng nhập thông tin cần thiết
-        (tên đăng nhập, email, mật khẩu, nhập lại mật khẩu).--%>
+        B4: Hệ thống trả về form đăng ký, hiển thị form ở giao diện trang đăng ký để người dùng nhập thông
+        tin cần thiết (họ và tên, tên đăng nhập, email, mật khẩu, nhập lại mật khẩu).--%>
         <form class="form-login-regeter" action="<%=Utils.fullPath("dangky")%>" method="POST">
             <div class="imgcontainer ">
                 <div class="option">
@@ -117,6 +118,7 @@
             </div>
 
             <div class=" login-geterform">
+                <%--B5: Khách hàng nhập thông tin đăng ký.--%>
                 <label><b>Họ và tên</b>
                     <p style="color: red"><%=fullname_error%>
                     </p></label>

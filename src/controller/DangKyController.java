@@ -35,27 +35,20 @@ public class DangKyController extends HttpServlet {
 
         if (tacVu == null) {
             // Use case: Đăng ký.
-            // B2. Hệ thống gọi phương thức trả về trang đăng ký.
+            // B3: Hệ thống gọi phương thức trả về trang đăng ký.
             traVeTrangDangKy(request, response);
         } else if (tacVu != null && tacVu.equals("themTaiKhoan")) {
 
             taiKhoan = layThongTinDangKy(request);
             // Use case: Đăng ký.
-            // B5. Nếu Người dùng đã click vào link xác nhận
-            // Hệ thống sẽ lưu tài khoản vào database, chuyển đến trang đăng nhập.
-
-
-            try {
-                if(taiKhoanDao.kiemTraTaiKhoan(taiKhoan.getTenDangNhap()) == false) {
-                    Date id = new Date();
-                    taiKhoan = new TaiKhoan("" + id.getTime(),taiKhoan.getHoVaTen(), taiKhoan.getTenDangNhap(), taiKhoan.getEmail(),
-                            taiKhoanDao.maHoaMD5(taiKhoan.getMatKhau()), 2, 1);
-
-                    taiKhoanDao.themTaiKhoan(taiKhoan);
-                }
-            } catch (URISyntaxException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            // B8: Người dùng đã click vào link xác nhận trong email. Hệ thống sẽ thực hiện:
+            if(taiKhoanDao.kiemTraTaiKhoan(taiKhoan.getTenDangNhap()) == false) {
+                Date id = new Date();
+                //B8.1: Lấy thông tin đăng ký có trong link đã gửi mail cho khách hàng.
+                taiKhoan = new TaiKhoan("" + id.getTime(),taiKhoan.getHoVaTen(), taiKhoan.getTenDangNhap(), taiKhoan.getEmail(),
+                        taiKhoanDao.maHoaMD5(taiKhoan.getMatKhau()), 2, 1);
+                //B8.2: Thêm tài khoản vào database.
+                taiKhoanDao.themTaiKhoan(taiKhoan);
             }
             response.sendRedirect(request.getContextPath() + "dangnhap");
         }
@@ -68,19 +61,17 @@ public class DangKyController extends HttpServlet {
         tacVu = request.getParameter("tacVu");
         if (tacVu != null && tacVu.equals("xacThucMail")) {
             // Use case: Đăng ký.
-            // B3: Hệ thống lấy thông tin người dùng vừa nhập,
+            // B6: Hệ thống xử lý thông tin đăng ký, lấy thông tin người dùng vừa nhập.
             taiKhoan = layThongTinDangKy(request);
-            // B4: Hệ thống kiểm tra thông tin đăng ký
+            // B7: Hệ thống kiểm tra thông tin đăng ký. Có 2 trường hợp:
             boolean ketQuaKiemTra = kiemTraThongTinDangKy(taiKhoan, request, response);
             if (ketQuaKiemTra == false) {
                 /*
-                 * B4.1. Nếu kiểm tra thông tin đăng ký là sai: hiển thị các thông báo sai tương
-                 * ứng ở form (các trường rỗng, email sai định dạng, mật khẩu không đủ mạnh, mật
-                 * khẩu nhập lại chưa đúng).
+                 * B7.1: Nếu kiểm tra thông tin đăng ký là sai: hiển thị các thông báo sai tương ứng ở form
+                 * (các trường rỗng, email sai định dạng, mật khẩu không đủ mạnh, mật khẩu nhập lại chưa đúng).
                  */
             } else {
-                /* B4.2. Nếu kiểm tra thông tin đăng ký là đúng:
-                    Hệ thống Gửi Email để người dùng xác thực
+                /* B7.2: Nếu kiểm tra thông tin đăng ký là đúng: hệ thống gửi email cho người dùng xác thực.
                  */
                 guiMailXacThuc(taiKhoan);
                 request.setAttribute("yeuCauXacThuc", "Bạn vui lòng đăng nhập vào Email để xác thực đăng ký tài khoản");
@@ -109,7 +100,7 @@ public class DangKyController extends HttpServlet {
         tk.setMatKhau(request.getParameter("pwd"));
         return tk;
     }
-
+//Phương thức kiểm tra thông tin ngời dùng nhập vào:
     private boolean kiemTraThongTinDangKy(TaiKhoan taiKhoan, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String fullname = taiKhoan.getHoVaTen();
@@ -124,14 +115,14 @@ public class DangKyController extends HttpServlet {
         String email_error = "";
         String password_error = "";
         String repass_error = "";
-
+//Kiểm tra họ và tên
         if (fullname.equals("")) {
             fullname_error = "✖ Vui lòng nhập họ tên!";
         }
         if (fullname_error.length() > 0) {
             request.setAttribute("hoten_error", fullname_error);
         }
-
+//Kiểm tra tên đăng nhập
         if (name.equals("")) {
             name_error = "✖ Vui lòng nhập tên đăng nhập!";
         } else if (taiKhoanDao.kiemTraTaiKhoan(name) == true) {
@@ -182,7 +173,7 @@ public class DangKyController extends HttpServlet {
         }
 
     }
-
+//Phương thức gửi mail xác thực:
     private static void guiMailXacThuc(TaiKhoan taiKhoan) {
 
         try {

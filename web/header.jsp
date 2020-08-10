@@ -20,10 +20,10 @@
                     <ul class="nav register">
                         <li class="nav-item1 has-mega">
                             <% TaiKhoan taiKhoan = (TaiKhoan) session.getAttribute("Auth");%>
-                            <a href="<%=Utils.fullPath("trangchu")%>">
+                            <a href="#">
                                 <i class="fas fa-user-circle fa-2x"></i>
                                 <% if (taiKhoan != null) {%>
-                                <div class="account">Xin chào, <%=taiKhoan.getTenDangNhap()%> <i
+                                <div class="account">Xin chào, <%=taiKhoan.getHoVaTen()%> <i
                                         class="fa fa-angle-down"
                                         data-toggle="dropdown"></i></div>
                                 <% } else { %>
@@ -31,7 +31,7 @@
                                                                   data-toggle="dropdown"></i></div>
                                 <% } %>
                             </a>
-                            <div class="mega-content">
+                            <div class="mega-content" style="top:50px !important">
                                 <ul class="level0">
                                     <li class="level1 parent item">
                                         <ul class="level1 register-btn">
@@ -42,22 +42,24 @@
                                                 Giao diện sẽ xuất hiện một dropdown menu chứa các nút chức năng: đăng nhập, đăng ký.
                                                 Khách hàng chọn vào nút đăng nhập.
                                                 --%>
-                                                <div class="login"><a href="<%=Utils.fullPath("dangnhap")%>"><i
-                                                        class="fa fa-sign-in-alt"></i> Đăng nhập</a></div>
+                                                <div class="login" style="padding-right: 10px">
+                                                    <button class="login" style="border: none; color: white" onclick="window.location.href='<%=Utils.fullPath("dangnhap")%>';"><i class="fa fa-sign-in-alt"></i> Đăng nhập</button>
+                                                </div>
                                             </li>
                                             <li class="level2">
                                                 <%--Use case: Đăng ký.
-                                                B1.Khách hàng đưa chuột vào icon tài khoản ở góc trên bên trái của giao diện.
-                                                Giao diện sẽ xuất hiện một dropdown menu chứa các nút chức năng: đăng nhập, đăng ký.
-                                                Khách hàng chọn vào nút đăng ký.--%>
-                                                <div class="register"><a href="<%=Utils.fullPath("dangky")%>"><i
-                                                        class="fa fa-registered"></i> Đăng kí</a></div>
+                                                B1: Khách hàng đưa chuột vào icon tài khoản ở góc trên bên trái của giao diện.
+                                                Giao diện sẽ xuất hiện một dropdown menu chứa các nút dẫn tới chức năng:
+                                                đăng nhập, đăng ký. Khách hàng chọn vào vào nút đăng ký.--%>
+                                                <div class="register" style="padding-right: 10px">
+                                                    <button class="register" style="border: none; color: white" onclick="window.location.href='<%=Utils.fullPath("dangky")%>';"><i class="fa fa-registered"></i> Đăng kí</button>
+                                                </div>
                                             </li>
                                             <% } else { %>
                                             <li class="level2 padding-top-5">
-                                                <div class="logout"><a href="<%=Utils.fullPath("dangxuat")%>"><i
-                                                        class="fa fa-sign-out-alt"></i> Đăng
-                                                    xuất</a></div>
+                                                <div class="logout" style="padding-right: 10px">
+                                                    <button class="logout" style="border: none; color: white" onclick="window.location.href='<%=Utils.fullPath("dangxuat")%>';"><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
+                                                </div>
                                             </li>
                                             <% } %>
                                         </ul>
