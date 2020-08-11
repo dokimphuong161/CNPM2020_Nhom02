@@ -22,7 +22,7 @@ public class GioHangController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         layTacVu(request);
         //Use case: thêm vào giỏ hàng
-        //B4: Hệ thống gọi phương thức trả về trang giỏ hàng.
+        //B4.1: Hệ thống gọi phương thức trả về trang giỏ hàng.
         if(type != null && type.equals("add")) {
             themGioHang(request, response);
         }
@@ -37,7 +37,7 @@ public class GioHangController extends HttpServlet {
 
         traVeTrangGioHang(request,response);
     }
-
+ //B4: Hệ thống  gọi phương thức thêm giỏ hàng
     private  void themGioHang(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             HttpSession session = request.getSession();
@@ -78,11 +78,10 @@ public class GioHangController extends HttpServlet {
     private void layTacVu(HttpServletRequest request) {
         type = request.getParameter("type");
     }
-
+// Phương thức trả về trang giỏ hàng
     private void traVeTrangGioHang(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         GioHang c = (GioHang) request.getSession().getAttribute("Cart");
         request.setAttribute("Cart",c);
-        //4.1 trả về trang giỏ hàng
         request.getRequestDispatcher("giohang.jsp").forward(request,response);
     }
 }
