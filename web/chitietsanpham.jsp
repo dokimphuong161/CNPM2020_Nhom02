@@ -251,7 +251,7 @@
 								</div>
 
 <%--            usecase-thêm cào giỏ hàng:
-                B3: Khách hàng thành viên/nhân viên/quản trị viên chọn thêm vào giỏ hàng.--%>
+                B3: Khách hàng thành viên/nhân viên/quản trị viên chọn "cho vào giỏ".--%>
 								<div class="btn-mua">
 <%--            B4: Hệ thống gọi phương thức trả về trang giỏ hàng.--%>
                                     <a href="<%=Utils.fullPath("CartController?type=add&&id="+p.getInt(1))%>" type="submit" data-role='addtocart' style="display: inline-block; text-align: center" >
