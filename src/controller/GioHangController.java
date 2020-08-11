@@ -78,10 +78,11 @@ public class GioHangController extends HttpServlet {
     private void layTacVu(HttpServletRequest request) {
         type = request.getParameter("type");
     }
-//4.1 gọi phương thức travetranggiohang()
+
     private void traVeTrangGioHang(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         GioHang c = (GioHang) request.getSession().getAttribute("Cart");
         request.setAttribute("Cart",c);
+        //4.1 trả về trang giỏ hàng
         request.getRequestDispatcher("giohang.jsp").forward(request,response);
     }
 }
